@@ -445,6 +445,57 @@
 4. 好友管理模块
 5. 互动模块
 
++ **Vant**  Rem适配
+
+  - vant rem适配，需要安装两个插件
+
+    > [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将单位转化为 rem 
+    > [lib-flexible](https://github.com/amfe/lib-flexible) 用于设置 rem 基准值
+    
+  - 安装 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)：
+  
+  ```powershell
+  npm install postcss-pxtorem --save-dev
+  ```
+  
+  - 安装 [lib-flexible](https://github.com/amfe/lib-flexible)：
+  
+  ```powershell
+  npm i -S amfe-flexible
+  ```
+  
+  - 在 main.js 引入 amfe-flexible
+  
+  ```javascript
+  import 'amfe-flexible/index.js'
+  ```
+  
+  - 在 postcss.config.js 文件内(没有就在根目录创建一个)
+  
+  ```javascript
+  module.exports = {
+      plugins: {
+          'autoprefixer': {
+              overrideBrowserslist: [
+                  'Android 4.1',
+                  'iOS 7.1',
+                  'Chrome > 31',
+                  'ff > 31',
+                  'ie >= 8'
+              ]
+          },
+          'postcss-pxtorem': {
+              rootValue: 37.5,
+              propList: ['*']
+          }
+      }
+  }
+  ```
+  
+  - 重启项目
+  
+  
+
 ## Server 后台 API 接口设计
 
 ## 数据库设计

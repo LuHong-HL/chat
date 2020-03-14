@@ -5,6 +5,8 @@ import router from './router'
 import '../plugins/vant'
 //导入 amfe-flexible 用于设置 rem 基准值
 import 'amfe-flexible/index.js'
+//引入字体图标
+import './assets/iconfont/iconfont.css'
 
 
 Vue.config.productionTip = false

@@ -1,0 +1,100 @@
+{
+  "id": "1691679",
+  "name": "chat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "基于 node.js 和 vue.js 的即时通讯 ",
+  "glyphs": [
+    {
+      "icon_id": "1012741",
+      "name": "我的02",
+      "font_class": "iconfontzhizuobiaozhun04",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "1012745",
+      "name": "我的01",
+      "font_class": "iconfontzhizuobiaozhun08",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "657529",
+      "name": "分期－添加",
+      "font_class": "tianjia",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "798101",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "9186713",
+      "name": "朋友圈",
+      "font_class": "pengyouquan",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "10885638",
+      "name": "添加",
+      "font_class": "tianjia1",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "5809212",
+      "name": "我的",
+      "font_class": "wode1",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "1330725",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "8338679",
+      "name": "发现",
+      "font_class": "faxian1",
+      "unicode": "e6c6",
+      "unicode_decimal": 59078
+    },
+    {
+      "icon_id": "7008891",
+      "name": "addressbook_fill",
+      "font_class": "addressbook_fill",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    },
+    {
+      "icon_id": "7008892",
+      "name": "addressbook",
+      "font_class": "addressbook",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "749910",
+      "name": "chat",
+      "font_class": "chat",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "12310764",
+      "name": "chat_bubble",
+      "font_class": "chat_bubble",
+      "unicode": "e8e1",
+      "unicode_decimal": 59617
+    }
+  ]
+}

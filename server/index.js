@@ -15,7 +15,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 //链接数据库
 require('./plugins/db')(app)
 //加载路由
-require('./routers/admin/index')(app)
+require('./routes/admin/index')(app)
 
 app.listen(3000,()=>{
     console.log('http://localhost:3000/ is running!!!')

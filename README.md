@@ -271,7 +271,7 @@
 
 + Bug 分支
 
-  - 工作一半要处理其他问题，可以先提交再切换到一个新的分支处理问题，当然不能提交的话可以用 `git stach`把当前工作现场“储藏”起来，等以后恢复现场后继续工作;
+  - 工作一半要处理其他问题，可以先提交再切换到一个新的分支处理问题，当然不能提交的话可以用 `git stash`把当前工作现场“储藏”起来，等以后恢复现场后继续工作;
 
   - 用`git stash list`命令查看“储藏“的内容
 
@@ -297,7 +297,9 @@
   //查看远程分支
   git branch -r
   //查看全部分支
-  git branch -a	
+  git branch -a
+  // 查看本地分支与远程分支的关系
+  git branch -vv
   ```
 
 + 删除分支
@@ -309,7 +311,7 @@
   - `$ git push <远程主机名> <本地分支名>:<远程分支名>`  `git push`命令用于将本地分支的更新，推送到远程主机。
   - `$ git push origin master`  将本地的`master`分支推送到`origin`主机的`master`分支。如果`master`不存在，则会被新建。
   - `$ git push origin :master` 等同 `$ git push origin --delete master`  如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
-  - 建立本地分支和远程分支的关联，使用`git branch --set-upstream-to 本地branch-name origin/远程branch-name`；注：本地新建分支， push到远程服务器上之后，使用git pull或者git pull 拉取或提交数据时会报错，必须使用命令：git pull origin dev（指定远程分支）；如果想直接使用git pull或git push拉去提交数据就必须创建本地分支与远程分支的关联。
+  - 建立本地分支和远程分支的关联，使用`git push --set-upstream origin 本地branch-name:远程branch-name`；注：本地新建分支， push到远程服务器上之后，使用git pull或者git pull 拉取或提交数据时会报错，必须使用命令：git pull origin dev（指定远程分支）；如果想直接使用git pull或git push拉去提交数据就必须创建本地分支与远程分支的关联。
   - 关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；如果当前分支与多个主机存在追踪关系，则可以使用`-u`选项指定一个默认主机，这样后面就可以不加任何参数使用`git push`
 
 + 创建远程分支
@@ -317,7 +319,7 @@
   ```bash
   git checkout -b my-test  //在当前分支下创建my-test的本地分支分支
   git push origin my-test  //将my-test分支推送到远程
-  git branch --set-upstream-to my-test origin/my-test //将本地分支my-test关联到远程分支my-test上
+  git push --set-upstream-to 本地branch-name:远程branch-name //将本地分支my-test关联到远程分支my-test上
   git branch -a //查看远程分支 
   ```
   
@@ -328,7 +330,7 @@
 + 删除远程分支
 
   - `git branch -d <branch-name>` 删除本地分支
-  - `git branch -d -r <branchname>` 删除远程分支，删除后还需推送到服务器
+  - `git branch -d -r origin/<远程branchname>` 删除远程分支，删除后还需推送到服务器
   - `git push origin :<branch-name>` 删除后推送至服务器
 
 + 多人协助
@@ -341,7 +343,7 @@
   
   - 在本地创建和远程分支对应的分支，使用`git checkout -b 本地branch-name origin/远程branch-name`，本地和远程分支的名称最好一致；
   
-  - 建立本地分支和远程分支的关联，使用`git branch --set-upstream-to branch-name origin/branch-name`；注：本地新建分支， push到远程服务器上之后，使用git pull或者git pull 拉取或提交数据时会报错，必须使用命令：git pull origin dev（指定远程分支）；如果想直接使用git pull或git push拉去提交数据就必须创建本地分支与远程分支的关联。
+  - 建立本地分支和远程分支的关联，使用`git push --set-upstream 本地branch-name:远程branch-name`；注：本地新建分支， push到远程服务器上之后，使用git pull或者git pull 拉取或提交数据时会报错，必须使用命令：git pull origin dev（指定远程分支）；如果想直接使用git pull或git push拉去提交数据就必须创建本地分支与远程分支的关联。
   
   - 从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
   

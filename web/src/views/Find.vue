@@ -1,5 +1,8 @@
 <template>
-  <div>发现</div>
+  <div>
+    <p>发现</p>
+    <p>发现</p>
+  </div>
 </template>
 
 <script>

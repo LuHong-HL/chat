@@ -494,6 +494,60 @@
   
   - 重启项目
   
++ vue 项目引入第三方字体图标
+  
+  - 进入 [iconfont 官网](https://www.iconfont.cn/) 下载相应的字体图标
+  - 字体图标的整个项目，下载至本地，然后解压
+  - 解压后的文件夹改名为iconfont，或者其他的，然后整个文件夹放到 vue 项目的静态文件夹(assets)中
+  - 打开 iconfont 中的 demo_index.html 有相应用法的教程
+  - 例如：在项目入口文件 main.js 中引入 iconfont.css
+  
+  ```javascript
+  //引入字体图标
+  import './assets/iconfont/iconfont.css'
+  ```
+  
+  - 挑选相应的图标并获取类名，应用于页面
+  
+  ```javascript
+  <span class="iconfont iconxxx"></span>
+  ```
+  
+  - 有新图标要更换，重复上面步骤，即可
+  
++ 引入**sass**  插件，处理 scss 文件
+
+  - 安装插件 sass 和 sass-loader 插件
+
+  ```powershell
+  npm install sass sass-loader --save-dev
+  ```
+
+  - vue 项目的入口文件引入
+
+  ```javascript
+  // 引入工具样式
+  import './assets/css/style.scss'
+  ```
+
+  - 样式重置
+
+  ```javascript
+  // assets/css/style.scss
+  * {
+      box-sizing: border-box;
+  }
+  html {
+      font-size: 37.5px;
+  }
+  body {
+      margin: 0;
+      line-height: 1.2em;
+      background-color: #ededed;
+  
+  }
+  ```
+
   
 
 ## Server 后台 API 接口设计

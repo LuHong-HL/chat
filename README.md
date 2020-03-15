@@ -530,24 +530,159 @@
   import './assets/css/style.scss'
   ```
 
-  - 样式重置
+  - 样式重置 与定义工具样式（color、text-align、font-size、flex、margin、padding）
 
   ```javascript
   // assets/css/style.scss
   * {
       box-sizing: border-box;
   }
+  
   html {
       font-size: 37.5px;
   }
+  
   body {
       margin: 0;
       line-height: 1.2em;
       background-color: #ededed;
+  }
   
+  // color
+  $colors: (
+      "white": #ffffff,
+      "green": #08c161,
+      "primary": #ededed,
+      "gray": #e8e8e8,
+      "dark-1": #4c4c4c,
+      "dark-2": #191919,
+      "dark": #000,
+  );
+  @each $colorKey, $color in $colors {
+      .text-#{$colorKey} {
+          color: $color;
+      }
+      .background-#{$colorKey} {
+          background-color: $color;
+      }
+  }
+  
+  // text align
+  @each $var in (left, center, right) {
+      .text-#{$var} {
+          text-align: $var;
+      }
+  }
+  
+  //flex
+  .d-flex {
+      display: flex;
+  }
+  .flex-column {
+      flex-direction: column;
+  }
+  .flex-1 {
+      flex: 1;
+  }
+  .flex-grow-1 {
+      flex-grow: 1;
+  }
+  $flex-jc: (
+      start: flex-start,
+      end: flex-end,
+    center: center,
+      between: space-between,
+      around: space-around,
+  );
+  @each $key, $value in $flex-jc {
+      // .jc-center
+      .jc-#{$key} {
+          justify-content: $value;
+      }
+  }
+  $flex-ai: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+  );
+  @each $key, $value in $flex-ai {
+      // .ai-center
+      .ai-#{$key} {
+          align-items: $value;
+      }
+  }
+  
+  //font size
+  $base-font-size: 1rem; //37.5px
+  $font-sizes: (
+      sx: .266667, //10px
+      sm: .32, //12px
+      md: .373333, //14px
+      lg: .426667, //16px
+      xl: .48, //18px
+     
+  );
+  @each $sizeKey, $size in $font-sizes {
+      .fs-#{$sizeKey} {
+          font-size: $size * $base-font-size;
+      }
+  }
+  
+  // flex
+  //0-5: 0
+  //.mt-0 => margin-top:0;
+  $spacing-types: (
+      m: margin,
+      p: padding,
+  );
+  $spacing-directions: (
+      t: top,
+      r: right,
+      b: bottom,
+      l: left,
+  );
+  $spacing-base-size: 1rem;
+  $spacing-sizes: (
+      0: 0,
+      1: 0.25,
+      2: 0.5,
+      3: 1,
+      4: 1.5,
+      5: 3,
+  );
+  // mt-0
+  @each $typeKey, $type in $spacing-types {
+      // .m-1
+      @each $sizeKey, $size in $spacing-sizes {
+          .#{$typeKey}-#{$sizeKey} {
+              #{$type}: $size * $spacing-base-size;
+          }
+      }
+      // .mx-1 .my-1
+      @each $sizeKey, $size in $spacing-sizes {
+          .#{$typeKey}x-#{$sizeKey} {
+              #{$type}-left: $size * $spacing-base-size;
+              #{$type}-right: $size * $spacing-base-size;
+          }
+          .#{$typeKey}y-#{$sizeKey} {
+              #{$type}-top: $size * $spacing-base-size;
+              #{$type}-bottom: $size * $spacing-base-size;
+          }
+      }
+  
+      @each $directionKey, $direction in $spacing-directions {
+          @each $sizeKey, $size in $spacing-sizes {
+              // .mt-1 { margin-top: 0.25rem; }
+              .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+                  #{$type}-#{$direction}: $size * $spacing-base-size;
+              }
+          }
+      }
   }
   ```
-
+  
   
 
 ## Server 后台 API 接口设计

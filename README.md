@@ -683,7 +683,58 @@
   }
   ```
   
-  
++ [组件的封装](https://cn.vuejs.org/v2/guide/components-registration.html) 
+
+  - 全局注册
+
+  ```javascript
+  Vue.component('my-component-name', {
+    // ... 选项 ...
+  })
+  ```
+
+  - 局部注册（推荐）
+
+  ```javascript
+  import ComponentA from './ComponentA.vue'
+  export default {
+    components: {
+      ComponentA
+    },
+    // ...
+  }
+  ```
+
+  - prop 父组件向子组件传递参数
+
+    > 1、父组件可以静态或者动态传递 prop，通过标签属性静态传递，通过v-bind指令动态传递
+    
+    ```html
+      <!-- 这样给 prop 传入一个静态的值：-->
+      <blog-post title="My journey with Vue"></blog-post>
+      <!-- 动态赋予一个变量的值 -->
+      <blog-post v-bind:title="post.title"></blog-post>
+    ```
+    
+    > 2、子组件通过 props 接收数据
+    
+    ```javascript
+    // 以字符串数组形式列出的 prop：
+    props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+    // 以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
+    props: {
+      title: String,
+      likes: Number,
+      isPublished: Boolean,
+      commentIds: Array,
+      author: Object,
+      callback: Function,
+      contactsPromise: Promise // or any other constructor
+    }
+    ```
+    
+    
+
 
 ## Server 后台 API 接口设计
 

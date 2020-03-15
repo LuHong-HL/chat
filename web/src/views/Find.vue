@@ -1,18 +1,20 @@
 <template>
   <div>
-    <p>发现</p>
-    <p>发现</p>
+    <TopBar title="发现"></TopBar>
   </div>
 </template>
 
 <script>
+import TopBar from "../components/TopBar";
 export default {
   data() {
     return {};
+  },
+  components: {
+    TopBar
   }
 };
 </script>
 
 <style scoped>
-
 </style>

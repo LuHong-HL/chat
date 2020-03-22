@@ -1,0 +1,112 @@
+@import './variables';
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 37.5px;
+}
+
+body {
+    margin: 0;
+    line-height: 1.2em;
+    background-color: #ededed;
+}
+
+// color
+@each $colorKey, $color in $colors {
+    .text-#{$colorKey} {
+        color: $color;
+    }
+    .bg-#{$colorKey} {
+        background-color: $color;
+    }
+}
+
+// text align
+@each $var in (left, center, right) {
+    .text-#{$var} {
+        text-align: $var;
+    }
+}
+
+//flex
+.d-flex {
+    display: flex;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-1 {
+    flex: 1;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+@each $key, $value in $flex-jc {
+    // .jc-center
+    .jc-#{$key} {
+        justify-content: $value;
+    }
+}
+@each $key, $value in $flex-ai {
+    // .ai-center
+    .ai-#{$key} {
+        align-items: $value;
+    }
+}
+
+//font size 
+// .fs-sm => 12px
+@each $sizeKey, $size in $font-sizes {
+    .fs-#{$sizeKey} {
+        font-size: $size * $base-font-size;
+    }
+}
+
+// flex
+// mt-0
+@each $typeKey, $type in $spacing-types {
+    // .m-1
+    @each $sizeKey, $size in $spacing-sizes {
+        .#{$typeKey}-#{$sizeKey} {
+            #{$type}: $size * $spacing-base-size;
+        }
+    }
+    // .mx-1 .my-1
+    @each $sizeKey, $size in $spacing-sizes {
+        .#{$typeKey}x-#{$sizeKey} {
+            #{$type}-left: $size * $spacing-base-size;
+            #{$type}-right: $size * $spacing-base-size;
+        }
+        .#{$typeKey}y-#{$sizeKey} {
+            #{$type}-top: $size * $spacing-base-size;
+            #{$type}-bottom: $size * $spacing-base-size;
+        }
+    }
+
+    @each $directionKey, $direction in $spacing-directions {
+        @each $sizeKey, $size in $spacing-sizes {
+            // .mt-1 { margin-top: 0.25rem; }
+            .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+                #{$type}-#{$direction}: $size * $spacing-base-size;
+            }
+        }
+    }
+}
+
+//text overflow
+.text-ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.width-1 {
+    width: 100%;
+}
+.height-1 {
+    height: 100%;
+}

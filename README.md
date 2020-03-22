@@ -733,7 +733,45 @@
     }
     ```
     
-    
+  
++ Chrome 中找数据
+
+  ```javascript
+  $$('<class>')
+  ```
+
++ vue 中 **$ref** 访问子组件实例或子元素
+
+  - 尽管存在 prop 和事件，有的时候你仍可能需要在 JavaScript 里直接访问一个子组件。为了达到这个目的，你可以通过 `ref` 特性为这个子组件赋予一个 ID 引用
+
+    ```html
+    <base-input ref="usernameInput"></base-input>
+    ```
+
+  - 现在在你已经定义了这个 `ref` 的组件里，你可以使用：
+
+    ```javascript
+    this.$refs.usernameInput
+    ```
+
++ 时间格式的处理
+
+  - 引用 moment 插件 
+  - 定义 filters 进行处理
+
++ 文本溢出的处理
+
+  ```scss
+  //text overflow
+  .text-ellipsis {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+  ```
+
+  
 
 
 ## Server 后台 API 接口设计
@@ -1201,5 +1239,5 @@ const routes = [
   }
   ```
 
-  
++ 防止初始的时候数据库的文件引用出错，例如 A 引用 B 二 B 没有被初始化过，出现错误，所以使用到 **require-all**  插件，防止这种情况出现
 

@@ -7,7 +7,8 @@ import {
     TabbarItem,
     Cell,
     Button,
-    Sticky
+    Sticky,
+    Image
 } from 'vant';
 
 Vue.use(Icon);
@@ -18,3 +19,4 @@ Vue.use(TabbarItem)
 Vue.use(Cell)
 Vue.use(Button)
 Vue.use(Sticky)
+Vue.use(Image)

@@ -6,6 +6,55 @@
   "description": "基于 node.js 和 vue.js 的即时通讯 ",
   "glyphs": [
     {
+      "icon_id": "172696",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "781032",
+      "name": "微信支付",
+      "font_class": "weixinzhifu",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "1414069",
+      "name": "收藏",
+      "font_class": "shoucang1",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "4423492",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "5835456",
+      "name": "表情",
+      "font_class": "biaoqing",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "6683166",
+      "name": "卡包",
+      "font_class": "qiabao",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "8328310",
+      "name": "相册",
+      "font_class": "tupian",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "1012741",
       "name": "我的02",
       "font_class": "iconfontzhizuobiaozhun04",

@@ -9,7 +9,7 @@ import 'amfe-flexible/index.js'
 //引入字体图标
 import './assets/iconfont/iconfont.css'
 // 引入工具样式
-import './assets/css/style.scss'
+import './assets/scss/style.scss'
 
 
 // 引入组件文件

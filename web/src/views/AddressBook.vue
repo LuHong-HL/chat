@@ -2,6 +2,7 @@
   <div class="address-book-container">
     <my-top-bar title="通讯录"></my-top-bar>
     <van-index-bar :index-list="indexList" class="index-class">
+      
       <div v-for="(item, index) in indexList" :key="index">
         <van-index-anchor :index="item">{{item}}</van-index-anchor>
         <my-cell src="https://img.yzcdn.cn/vant/cat.jpeg" title="我是小小鸭"></my-cell>
@@ -51,6 +52,9 @@ export default {
 <style lang="scss" scoped>
 .address-book-container {
   padding-bottom: 1.33333rem;
-  
+  ::v-deep .van-index-bar__index {
+    line-height: 0.45rem;
+  }
 }
+ 
 </style>

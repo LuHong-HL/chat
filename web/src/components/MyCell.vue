@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <van-cell>
       <!-- 使用 title 插槽来自定义标题 -->
       <div class="cell-container d-flex ai-center">
@@ -12,7 +12,7 @@
         <span class="cell-title pl-1 fs-lg text-dark">{{title}}</span>
       </div>
     </van-cell>
-  </div>
+  
 </template>
 
 <script>

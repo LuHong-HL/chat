@@ -5,8 +5,19 @@
       
       <div v-for="(item, index) in indexList" :key="index">
         <van-index-anchor :index="item">{{item}}</van-index-anchor>
-        <my-cell src="https://img.yzcdn.cn/vant/cat.jpeg" title="我是小小鸭"></my-cell>
-        <my-cell src="https://img.yzcdn.cn/vant/cat.jpeg" title="我是小小鸭"></my-cell>
+        <van-cell class="d-flex ai-center" v-for="(item, index) in 10" :key="index" title="单元格" icon="https://img.yzcdn.cn/vant/cat.jpeg">
+        <template v-slot:icon>
+          <van-image
+            width="1rem"
+            height="1rem"
+            radius=".133333rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
+        </template>
+        <template v-slot:title>
+            <span class="cell-title pl-1 fs-lg text-dark">我是小小鸭</span>
+        </template>
+      </van-cell>
       </div>
     </van-index-bar>
   </div>

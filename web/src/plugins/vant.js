@@ -8,7 +8,8 @@ import {
     Cell,
     Button,
     Sticky,
-    Image
+    Image,
+    CellGroup
 } from 'vant';
 
 Vue.use(Icon);
@@ -20,3 +21,4 @@ Vue.use(Cell)
 Vue.use(Button)
 Vue.use(Sticky)
 Vue.use(Image)
+Vue.use(CellGroup)

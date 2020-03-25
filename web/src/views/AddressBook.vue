@@ -2,22 +2,55 @@
   <div class="address-book-container">
     <my-top-bar title="通讯录"></my-top-bar>
     <van-index-bar :index-list="indexList" class="index-class">
-      
+      <!-- 通讯录功能区 -->
+      <van-cell-group>
+        <van-cell class="d-flex ai-center">
+          <template v-slot:icon>
+            <div class="my-icon my-icon-1 d-flex jc-center ai-center">
+              <van-icon class-prefix="iconfont iconbg-add-friend" size=".586667rem" color="#fff" />
+            </div>
+          </template>
+          <template v-slot:title>
+            <span class="cell-title pl-1 fs-lg text-dark">新的朋友</span>
+          </template>
+        </van-cell>
+        <van-cell class="d-flex ai-center">
+          <template v-slot:icon>
+            <div class="my-icon my-icon-2 d-flex jc-center ai-center">
+              <van-icon class-prefix="iconfont iconqunliao" size=".586667rem" color="#fff" />
+            </div>
+          </template>
+          <template v-slot:title>
+            <span class="cell-title pl-1 fs-lg text-dark">群聊</span>
+          </template>
+        </van-cell>
+        <van-cell class="d-flex ai-center">
+          <template v-slot:icon>
+            <div class="my-icon my-icon-3 d-flex jc-center ai-center">
+              <van-icon class-prefix="iconfont iconbiaoqian" size=".586667rem" color="#fff" />
+            </div>
+          </template>
+          <template v-slot:title>
+            <span class="cell-title pl-1 fs-lg text-dark">标签</span>
+          </template>
+        </van-cell>
+      </van-cell-group>
+      <!-- 朋友列表 -->
       <div v-for="(item, index) in indexList" :key="index">
         <van-index-anchor :index="item">{{item}}</van-index-anchor>
-        <van-cell class="d-flex ai-center" v-for="(item, index) in 10" :key="index" title="单元格" icon="https://img.yzcdn.cn/vant/cat.jpeg">
-        <template v-slot:icon>
-          <van-image
-            width="1rem"
-            height="1rem"
-            radius=".133333rem"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-        </template>
-        <template v-slot:title>
+        <van-cell class="d-flex ai-center" v-for="(item, index) in 10" :key="index">
+          <template v-slot:icon>
+            <van-image
+              width="1rem"
+              height="1rem"
+              radius=".133333rem"
+              src="https://img.yzcdn.cn/vant/cat.jpeg"
+            />
+          </template>
+          <template v-slot:title>
             <span class="cell-title pl-1 fs-lg text-dark">我是小小鸭</span>
-        </template>
-      </van-cell>
+          </template>
+        </van-cell>
       </div>
     </van-index-bar>
   </div>
@@ -66,6 +99,24 @@ export default {
   ::v-deep .van-index-bar__index {
     line-height: 0.45rem;
   }
+  .my-icon {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.133333rem;
+  }
+  .my-icon-1 {
+    background-color: #fa9d3b;
+  }
+  .my-icon-2 {
+    background-color: #07c160;
+  }
+  .my-icon-3 {
+    background-color: #2782d7;
+  }
+
+  .van-cell {
+    padding-top: 0.16667rem;
+    padding-bottom: 0.16667rem;
+  }
 }
- 
 </style>

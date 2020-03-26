@@ -1,8 +1,19 @@
 <template>
   <div>
-    <my-top-bar title="微信"></my-top-bar>
+    <my-top-bar left-text="微信">
+      <template v-slot:right>
+        <div class="nav-bar_right">
+          <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>
+          <span class="va-middle iconfont icontianjia fs-xl"></span>
+        </div>
+      </template>
+    </my-top-bar>
     <div class="container">
-      <van-cell class="cell-container d-flex ai-center fs-lg" v-for="(item, index) in 15" :key="index">
+      <van-cell
+        class="cell-container d-flex ai-center fs-lg"
+        v-for="(item, index) in 15"
+        :key="index"
+      >
         <template v-slot:icon>
           <van-image
             width="1.1112rem"
@@ -36,5 +47,8 @@ export default {
 <style scoped>
 .container {
   padding-bottom: 1.333333rem;
+}
+.icon {
+  vertical-align: middle;
 }
 </style>

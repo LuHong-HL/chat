@@ -7,6 +7,8 @@ import AddressBook from '../views/AddressBook.vue'
 import Find from '../views/Find.vue'
 import My from '../views/My.vue'
 
+import User from '../views/my/User.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,6 +27,10 @@ const routes = [
       { path: 'find', component: Find },
       { path: 'my', component: My }
     ]
+  },
+  {
+    path: '/user',
+    component: User,
   }
 
 ]

@@ -27,6 +27,13 @@
       "unicode_decimal": 58950
     },
     {
+      "icon_id": "13725549",
+      "name": "箭头",
+      "font_class": "-left-arrow",
+      "unicode": "e8e2",
+      "unicode_decimal": 59618
+    },
+    {
       "icon_id": "551966",
       "name": "箭头",
       "font_class": "arrow-right-copy-copy-copy",

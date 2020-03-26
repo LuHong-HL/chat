@@ -9,7 +9,8 @@ import {
     Button,
     Sticky,
     Image,
-    CellGroup
+    CellGroup,
+    NavBar 
 } from 'vant';
 
 Vue.use(Icon);
@@ -22,3 +23,4 @@ Vue.use(Button)
 Vue.use(Sticky)
 Vue.use(Image)
 Vue.use(CellGroup)
+Vue.use(NavBar)

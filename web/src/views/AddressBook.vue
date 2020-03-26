@@ -1,6 +1,13 @@
 <template>
   <div class="address-book-container">
-    <my-top-bar title="通讯录"></my-top-bar>
+    <my-top-bar left-text="通讯录">
+      <template v-slot:right>
+        <div class="nav-bar_right">
+          <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>
+          <span class="va-middle iconfont icontianjia fs-xl"></span>
+        </div>
+      </template>
+    </my-top-bar>
     <van-index-bar :index-list="indexList" class="index-class">
       <!-- 通讯录功能区 -->
       <van-cell-group>

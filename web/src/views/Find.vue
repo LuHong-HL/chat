@@ -1,6 +1,13 @@
 <template>
   <div>
-    <my-top-bar title="发现"></my-top-bar>
+    <my-top-bar left-text="发现">
+      <template v-slot:right>
+        <div class="nav-bar_right">
+          <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>
+          <span class="va-middle iconfont icontianjia fs-xl"></span>
+        </div>
+      </template>
+    </my-top-bar>
     <!-- my-container 部分 -->
     <van-cell-group class="find-container">
       <van-cell class="cell-container d-flex ai-center jc-between fs-lg pt-1-5 pb-1-5">

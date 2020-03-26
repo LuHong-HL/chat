@@ -1,12 +1,16 @@
 <template>
   <div>
     <van-sticky>
-      <div class="topbar bg-gray fs-xl d-flex jc-between p-1 ai-center">
-        <div>{{title}}</div>
-        <div class="d-flex ai-center">
-          <span class="iconfont iconsousuo pr-3 fs-xxl"></span>
-          <span class="iconfont icontianjia fs-xl"></span>
-        </div>
+      <div class="topbar bg-gray fs-xl d-flex jc-between py-0-5 px-1 ai-center">
+        <router-link tag="slot" name="left" :to="to">
+          <div class="nav-bar_left">
+            <i v-if="leftArrow" class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"></i>
+            <span class="pl-1">{{leftText ? leftText : ''}}</span>
+          </div>
+        </router-link>
+
+        <slot name="default"></slot>
+        <slot name="right"></slot>
       </div>
     </van-sticky>
   </div>
@@ -14,7 +18,19 @@
 
 <script>
 export default {
-  props: ["title"],
+  props: {
+    "left-text": {
+      type: String
+    },
+    "left-arrow": {
+      type: Boolean,
+      default: false
+    },
+    to: {
+      type: String,
+      default:''
+    }
+  },
   data() {
     return {};
   }

@@ -2,7 +2,7 @@
   <div>
     <!-- my-header 部分 -->
     <van-cell-group class="my-header pb-2 pt-2">
-      <van-cell class="cell-container d-flex ai-center jc-between fs-lg mt-1 mb-1">
+      <van-cell class="cell-container d-flex ai-center jc-between fs-lg mt-1 mb-1" to="/user">
         <template v-slot:icon>
           <van-image
             width="1.555555rem"

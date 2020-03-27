@@ -33,7 +33,7 @@
     </van-cell-group>
     <!-- my-container 部分 -->
     <van-cell-group class="my-container">
-      <van-cell class="cell-container d-flex ai-center jc-between fs-lg pt-1-5 pb-1-5">
+      <van-cell class="cell-container d-flex ai-center jc-between fs-lg pt-1-5 pb-1-5" to="/set_up">
         <template v-slot:icon>
           <van-icon class-prefix="iconfont iconshezhi" size=".586667rem" color="#2e92f0" />
         </template>

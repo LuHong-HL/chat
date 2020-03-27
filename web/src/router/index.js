@@ -8,6 +8,8 @@ import Find from '../views/Find.vue'
 import My from '../views/My.vue'
 
 import User from '../views/my/User.vue'
+import SetUp from '../views/my/SetUp.vue'
+
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,10 @@ const routes = [
   {
     path: '/user',
     component: User,
+  },
+  {
+    path: '/set_up',
+    component: SetUp,
   }
 
 ]

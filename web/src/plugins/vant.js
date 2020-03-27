@@ -10,7 +10,8 @@ import {
     Sticky,
     Image,
     CellGroup,
-    NavBar 
+    NavBar,
+    Popup  
 } from 'vant';
 
 Vue.use(Icon);
@@ -24,3 +25,4 @@ Vue.use(Sticky)
 Vue.use(Image)
 Vue.use(CellGroup)
 Vue.use(NavBar)
+Vue.use(Popup)

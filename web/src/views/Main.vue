@@ -43,13 +43,11 @@
 export default {
   data() {
     return {
-      
+      active: this.$route.path
     };
   },
   computed: {
-    active() {
-      return this.$route.path
-    }
+    
   },
 };
 </script>

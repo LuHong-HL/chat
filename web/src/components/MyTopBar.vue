@@ -1,13 +1,18 @@
 <template>
   <div>
     <van-sticky>
-      <div class="topbar bg-gray fs-xl d-flex jc-between py-0-5 px-1 ai-center">
-        <router-link tag="slot" name="left" :to="to">
+      <div class="topbar bg-gray fs-xl d-flex jc-between  p-1 ai-center">
+        <slot name="left">
           <div class="nav-bar_left">
-            <i v-if="leftArrow" class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"></i>
-            <span class="pl-1">{{leftText ? leftText : ''}}</span>
+            <router-link
+              tag="i"
+              :to="to"
+              v-if="leftArrow"
+              class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"
+            ></router-link>
+            <span class="pl-1" >{{leftText ? leftText : ''}}</span>
           </div>
-        </router-link>
+        </slot>
 
         <slot name="default"></slot>
         <slot name="right"></slot>
@@ -28,7 +33,7 @@ export default {
     },
     to: {
       type: String,
-      default:''
+      default: ""
     }
   },
   data() {
@@ -46,4 +51,8 @@ export default {
 //   right: 0;
 //   z-index: 2;
 // }
+
+.topbar {
+  height: 1.222133rem;
+}
 </style>

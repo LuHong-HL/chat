@@ -11,7 +11,10 @@ import {
     Image,
     CellGroup,
     NavBar,
-    Popup  
+    Popup,
+    Field,
+    Tab,
+    Tabs   
 } from 'vant';
 
 Vue.use(Icon);
@@ -26,3 +29,6 @@ Vue.use(Image)
 Vue.use(CellGroup)
 Vue.use(NavBar)
 Vue.use(Popup)
+Vue.use(Field)
+Vue.use(Tab)
+Vue.use(Tabs)

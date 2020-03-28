@@ -7,6 +7,8 @@ import AddressBook from '../views/AddressBook.vue'
 import Find from '../views/Find.vue'
 import My from '../views/My.vue'
 
+import Login from '../views/login/Login.vue'
+
 import User from '../views/my/User.vue'
 import SetUp from '../views/my/SetUp.vue'
 
@@ -17,6 +19,10 @@ const routes = [
   {
     path:'/',
     redirect: '/main'
+  },
+  {
+    path:'/login',
+    component: Login,
   },
   {
     path: '/main',

@@ -3,8 +3,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 
-import AdministratorAccountCreate from '../views/AdministratorAccountCreate.vue'
-import AdministratorAccountList from '../views/AdministratorAccountList.vue'
+
+import UserList from '../views/UserList.vue'
 
 import AdminUserCreate from '../views/AdminUserCreate.vue'
 import AdminUserList from '../views/AdminUserList.vue'
@@ -24,21 +24,13 @@ const routes = [
   {
     path: '/',
     name: 'Main',
-    redirect: { name: 'AdminUserCreate' },
+    redirect: { name: 'UserList' },
     component: Main,
     children: [
       {
-        path: 'administratorAccounts/create',
-        component: AdministratorAccountCreate
-      },
-      {
-        path: 'administratorAccounts/edit/:id',
-        component: AdministratorAccountCreate,
-        props: true
-      },
-      {
-        path: 'administratorAccounts/list',
-        component: AdministratorAccountList
+        path: 'users/list',
+        name: 'UserList',
+        component: UserList
       },
 
       {

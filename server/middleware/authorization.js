@@ -1,4 +1,5 @@
 module.exports = options => {
+    // 错误处理 中间件
     const assert = require('http-assert')
     // token 处理中间件
     const jwt = require('jsonwebtoken')

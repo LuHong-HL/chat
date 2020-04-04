@@ -5,12 +5,11 @@
         <el-menu  router unique-opened :default-active="$route.path">
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-message"></i>账号管理
+              <i class="el-icon-message"></i>用户
             </template>
             <el-menu-item-group>
-              <template slot="title">管理员账号</template>
-              <el-menu-item index="/administratorAccounts/create">创建管理员账号</el-menu-item>
-              <el-menu-item index="/administratorAccounts/list">管理员账号列表</el-menu-item>
+              <template slot="title">用户</template>
+              <el-menu-item index="/users/list">用户列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">

@@ -11,6 +11,13 @@ import './assets/iconfont/iconfont.css'
 // 引入工具样式
 import './assets/scss/style.scss'
 
+// 导入 axios 第三方及配置
+import http from './plugins/http'
+
+// 在原型上挂载http 之后可以在任意组件中通过 this.$http 使用
+Vue.prototype.$http = http
+
+
 
 // 引入组件文件
 import MyTopBar from './components/MyTopBar.vue'

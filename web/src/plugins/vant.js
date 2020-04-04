@@ -14,7 +14,9 @@ import {
     Popup,
     Field,
     Tab,
-    Tabs   
+    Tabs,
+    Toast,
+    Form    
 } from 'vant';
 
 Vue.use(Icon);
@@ -32,3 +34,6 @@ Vue.use(Popup)
 Vue.use(Field)
 Vue.use(Tab)
 Vue.use(Tabs)
+Vue.use(Toast)
+Vue.use(Form)
+

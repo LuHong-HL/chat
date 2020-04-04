@@ -5,7 +5,6 @@
       <el-table-column type="index" label="序号" width="100"></el-table-column>
       <el-table-column label="ID" prop="_id"></el-table-column>
       <el-table-column label="用户名" prop="username"></el-table-column>
-      
       <el-table-column label="操作" width="120">
         <template slot-scope="scope">
           <el-button

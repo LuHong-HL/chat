@@ -18,11 +18,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    redirect: '/main'
+    redirect: '/login'
   },
   {
     path:'/login',
     component: Login,
+    meta: {
+      isPublic: true
+    }
   },
   {
     path: '/main',
@@ -49,6 +52,15 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+//注册全局前置守卫
+router.beforeEach((to, from, next) => {
+  //to and from are Route Object,next() must be called to resolve the hook
+  if (!to.meta.isPublic && !sessionStorage.token) {
+    return next({ path: '/login' })
+  }
+  next()
 })
 
 export default router

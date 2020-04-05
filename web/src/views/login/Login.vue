@@ -12,6 +12,7 @@
                 placeholder="请输入手机号或用户名"
               />
               <van-field
+                type="password"
                 v-model="model.login.password"
                 :rules="[{ required: true, message: '密码不能为空' }]"
                 label="密码"
@@ -40,12 +41,14 @@
                 :rules="[{ validator: validatorPhone, message: '请输入正确手机号' }]"
               />
               <van-field
+                type="password"
                 v-model="model.register.password"
                 placeholder="请输入密码"
                 label="密码"
                 :rules="[{ validator: validatorPassword, message: '请输入3位以上的密码' }]"
               />
               <van-field
+                type="password"
                 v-model="model.register.password2"
                 placeholder="再次输入密码"
                 label="确认密码"
@@ -67,15 +70,14 @@ export default {
       model: {
         active: 0,
         register: {
-          username: '', //用户名
-          phone: '', // 手机号
-          password: '', // 密码
-          password2:'',  // 密码
-
+          username: "", //用户名
+          phone: "", // 手机号
+          password: "", // 密码
+          password2: "" // 密码
         },
         login: {
-          username: '',
-          password: '',
+          username: "",
+          password: ""
         }
       }
     };
@@ -84,21 +86,32 @@ export default {
     // 登录
     async login() {
       const res = await this.$http.post("/login", this.model.login);
-      sessionStorage.token = res.data.token;
+      // sessionStorage.token = res.data.token;
+      sessionStorage.setItem("token", res.data.token);
       this.$toast({
         type: "success",
         message: "登录成功"
       });
       this.$router.push("/main");
     },
+    // login() {
+    //   this.$http.post("/login", this.model.login).then(resolved =>{
+    //      sessionStorage.token = resolved.data.token;
+    //   this.$toast({
+    //     type: "success",
+    //     message: "登录成功"
+    //   });
+    //   this.$router.push("/main");
+    //   })
+    // },
     // 注册
     async register() {
-      const res = await this.$http.post("/rest/users", this.model.register)
+      const res = await this.$http.post("/rest/users", this.model.register);
       this.$toast({
         type: "success",
         message: "注册成功"
       });
-      console.log(res)
+      console.log(res);
       this.model.login.username = res.data.phone;
       this.model.active = 0;
     },
@@ -116,14 +129,13 @@ export default {
     },
     // 验证两次密码是否相等
     validatorPassword2() {
-      if (!(this.model.register.password === this.model.register.password2)){
-        this.model.register.password = '';
-        this.model.register.password2 = '';
+      if (!(this.model.register.password === this.model.register.password2)) {
+        this.model.register.password = "";
+        this.model.register.password2 = "";
         return false;
-      }else{
+      } else {
         return true;
       }
-      
     }
   }
 };

@@ -34,7 +34,7 @@
     <!-- popup 部分 -->
     <van-popup v-model="show" round position="bottom" class="popup">
       <van-cell-group>
-        <van-cell class="cell-container fs-lg pt-1-5 pb-1-5">
+        <van-cell class="cell-container fs-lg pt-1-5 pb-1-5" @click="logout">
           <div class="text-center">
             <span class="cell-title fs-lg text-dark">退出登录</span>
           </div>
@@ -71,6 +71,13 @@ export default {
     //取消弹出层
     cancelPopup() {
       this.show = false;
+    },
+    //注销账号
+    logout() {
+      // 1. 清除 token
+      // 2. 跳转到登录页面
+      sessionStorage.removeItem('token')
+      this.$router.push('/login')
     }
   }
 };

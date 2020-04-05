@@ -68,6 +68,7 @@ module.exports = app => {
         assert(isValid, 422, '密码错误')
         // // 3. 返回 token
         const token = jwt.sign({ id: user._id }, app.get('secret'))
+        console.log('登陆成功', user)
         res.send({ token })
     })
 

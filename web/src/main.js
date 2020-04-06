@@ -13,6 +13,8 @@ import './assets/scss/style.scss'
 
 // 导入 axios 第三方及配置
 import http from './plugins/http'
+// 导入 store 
+import store from './store/index'
 
 // 在原型上挂载http 之后可以在任意组件中通过 this.$http 使用
 Vue.prototype.$http = http
@@ -31,5 +33,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store, //使用 store
   render: h => h(App)
 }).$mount('#app')

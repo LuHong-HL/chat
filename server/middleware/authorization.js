@@ -13,7 +13,6 @@ module.exports = options => {
         // 验证 token 是否有效
         assert(tokenData, 401, "请先登录")
         // 查找数据库中的用户 
-        console.log('aa',req.model)
         req.user = await AdminUser.findById(tokenData.id)
         // 是否存在此用户
         assert(req.user, 401, "请先登录")

@@ -88,7 +88,8 @@ export default {
       const res = await this.$http.post("/login", this.model.login);
       // sessionStorage.token = res.data.token;
       sessionStorage.setItem("token", res.data.token);
-      console.log('user', res.data.user)
+      // 保存用户基本信息到 store 中
+      this.$store.commit('updateUser', res.data.user)
       this.$toast({
         type: "success",
         message: "登录成功"

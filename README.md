@@ -793,6 +793,68 @@
 
 + 前端路由拦截 全局前置守卫
 
++ 前端导入Vuex 及其配置
+
+  - 安装 vuex
+
+  ```shell
+  npm install vuex --save
+  ```
+
+  - 在src文件目录下新建一个名为store的文件夹，为方便引入并在store文件夹里新建一个index.js,里面的内容如下:
+
+  ```js
+  import Vue from 'vue';
+  import Vuex from 'vuex';
+  Vue.use(Vuex);
+  
+  // vuex 的状态 类似组件的data
+  const state = {
+      test: '测试',
+      user:{}
+  }
+  // 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
+  const mutations = {
+      updateUser(state, user) {
+          state.user = user
+      }
+  }
+  
+  // 创建一个 store
+  const store = new Vuex.Store({
+      state,
+      mutations
+  });
+   
+  // 导出 store
+  export default store;
+  ```
+
+  - 在 main.js里面引入store，然后再全局注入一下，这样一来就可以在任何一个组件里面使用this.$store了
+
+  ```js
+  // 导入 store 
+  import store from './store/index
+  
+  new Vue({
+    router,
+    store, //使用 store
+    render: h => h(App)
+  }).$mount('#app')
+  ```
+
+  - 组件中使用 state, mutation 的演示
+
+  ```js
+  // 读取 store 中的user数据
+  this.$store.state.user
+  
+  // 保存 user 到 store 中
+  this.$store.commit('updateUser', user)
+  ```
+
+  
+
 
 ## Server 后台 API 接口设计
 

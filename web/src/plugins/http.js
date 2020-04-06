@@ -7,16 +7,16 @@ const http = axios.create({
 })
 
 // 添加请求拦截器 
-// http.interceptors.request.use(function (config) {
-//     // Do something before request is sent
-//     if(sessionStorage.token){
-//         config.headers.Authorization = 'Bearer ' + sessionStorage.token
-//     }
-//     return config;
-//   }, function (error) {
-//     // Do something with request error
-//     return Promise.reject(error);
-//   });
+http.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    if(sessionStorage.token){
+        config.headers.Authorization = 'Bearer ' + sessionStorage.token
+    }
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
 
 // 定义拦截器，全局捕获错误
 http.interceptors.response.use(res => {

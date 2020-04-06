@@ -6,10 +6,10 @@
           <van-form @submit="login">
             <div class="field">
               <van-field
-                v-model="model.login.username"
-                :rules="[{ required: true, message: '用户名不能为空' }]"
-                label="用户名"
-                placeholder="请输入手机号或用户名"
+                v-model="model.login.phone"
+                :rules="[{ validator: validatorPhone, message: '请输入正确手机号' }]"
+                label="手机号"
+                placeholder="请输入手机号"
               />
               <van-field
                 type="password"
@@ -88,6 +88,7 @@ export default {
       const res = await this.$http.post("/login", this.model.login);
       // sessionStorage.token = res.data.token;
       sessionStorage.setItem("token", res.data.token);
+      console.log('user', res.data.user)
       this.$toast({
         type: "success",
         message: "登录成功"
@@ -112,7 +113,7 @@ export default {
         message: "注册成功"
       });
       console.log(res);
-      this.model.login.username = res.data.phone;
+      this.model.login.phone = res.data.phone;
       this.model.active = 0;
     },
     // 正则验证用户名

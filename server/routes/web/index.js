@@ -60,16 +60,21 @@ module.exports = app => {
     // 登录校验处理
     app.post('/web/api/login', async (req, res) => {
         // 1. 根据用户名找用户
-        const { username, password } = req.body
-        const user = await User.findOne({ phone: username }).select('+password')
-        assert(user, 422, '用户不存在')
+        const { phone, password } = req.body
+        let user = {}
+        let userAndPassword = await User.findOne({ phone: phone }).select('+password')
+        assert(userAndPassword, 422, '用户不存在')
         // // 2. 校验密码
-        const isValid = require('bcryptjs').compareSync(password, user.password)
+        const isValid = require('bcryptjs').compareSync(password, userAndPassword.password)
         assert(isValid, 422, '密码错误')
         // // 3. 返回 token
-        const token = jwt.sign({ id: user._id }, app.get('secret'))
-        console.log('登陆成功', user)
-        res.send({ token })
+        const token = jwt.sign({ id: userAndPassword._id }, app.get('secret'))
+        for( let [key, value] of Object.entries(userAndPassword._doc)){
+            if(key !== 'password'){
+                user[key] = value
+            }
+        }
+        res.send({ token, user })
     })
 
     //错误统一处理函数

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-top-bar left-text="微信">
+    <my-top-bar left-text="通信">
       <template v-slot:right>
         <div class="nav-bar_right">
           <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>

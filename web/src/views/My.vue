@@ -16,7 +16,7 @@
         </template>
         <template v-slot:label>
           <div class="d-flex">
-            <span class="cell-title fs-md pl-1 text-dark-3 flex-grow-1">微信号:kdjfk456</span>
+            <span class="cell-title fs-md pl-1 text-dark-3 flex-grow-1">通信号:kdjfk456</span>
             <div class="d-flex">
               <div class="pr-1">
                 <van-icon class-prefix="iconfont iconerweima" size=".373333rem" color="#e8e8e8" />

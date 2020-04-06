@@ -27,7 +27,7 @@
       </van-cell>
       <van-cell class=" d-flex ai-center fs-lg pt-1-5 pb-1-5" to="">
         <template v-slot:title>
-          <span class="fs-lg text-dark">微信号</span>
+          <span class="fs-lg text-dark">通信号</span>
         </template>
         <template v-slot:right-icon>
           <span class="text-dark-3">hello world</span>

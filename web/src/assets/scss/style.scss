@@ -24,7 +24,7 @@ body {
     }
 }
 
-// text align
+// text align  text-center
 @each $var in (left, center, right) {
     .text-#{$var} {
         text-align: $var;

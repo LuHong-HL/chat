@@ -16,7 +16,8 @@ import {
     Tab,
     Tabs,
     Toast,
-    Form    
+    Form,
+    Divider     
 } from 'vant';
 
 Vue.use(Icon);
@@ -36,4 +37,5 @@ Vue.use(Tab)
 Vue.use(Tabs)
 Vue.use(Toast)
 Vue.use(Form)
+Vue.use(Divider)
 

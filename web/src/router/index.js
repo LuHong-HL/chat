@@ -12,16 +12,18 @@ import Login from '../views/login/Login.vue'
 import User from '../views/my/User.vue'
 import SetUp from '../views/my/SetUp.vue'
 
+import Username from '../views/my/user/Username.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path:'/',
+    path: '/',
     redirect: '/login'
   },
   {
-    path:'/login',
+    path: '/login',
     component: Login,
     meta: {
       isPublic: true
@@ -43,6 +45,7 @@ const routes = [
     path: '/user',
     component: User,
   },
+  { path: '/user/username', component: Username },
   {
     path: '/set_up',
     component: SetUp,

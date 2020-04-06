@@ -4,7 +4,7 @@
     <van-cell-group>
       <van-cell class="d-flex ai-center">
         <template v-slot:title>
-          <span class="fs-lg text-dark">我是小小鸭</span>
+          <span class="fs-lg text-dark">头像</span>
         </template>
         <template v-slot:right-icon>
           <van-image
@@ -16,12 +16,12 @@
           <van-icon class="pl-1" name="arrow" color="#e9e9e9" />
         </template>
       </van-cell>
-      <van-cell class=" d-flex ai-center fs-lg pt-1-5 pb-1-5" to="">
+      <van-cell class=" d-flex ai-center fs-lg pt-1-5 pb-1-5" to="/user/username">
         <template v-slot:title>
           <span class="fs-lg text-dark">昵称</span>
         </template>
         <template v-slot:right-icon>
-          <span class="text-dark-3">醉月之伤</span>
+          <span class="text-dark-3">{{$store.state.user.username}}</span>
           <van-icon class="pl-1" name="arrow" color="#e9e9e9" />
         </template>
       </van-cell>
@@ -30,7 +30,7 @@
           <span class="fs-lg text-dark">通信号</span>
         </template>
         <template v-slot:right-icon>
-          <span class="text-dark-3">hello world</span>
+          <span class="text-dark-3">{{$store.state.user.phone}}</span>
           <van-icon class="pl-1" name="arrow" color="#e9e9e9" />
         </template>
       </van-cell>
@@ -68,7 +68,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
   methods: {}
 };

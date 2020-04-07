@@ -5,7 +5,14 @@
         <div class="nav-bar_right">
           <!-- <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>
           <span class="va-middle iconfont icontianjia fs-xl"></span>-->
-          <van-button type="primary" size="small">保存</van-button>
+          <!-- :class="$store.state.user.username === username ? '' : ''" -->
+          <van-button
+            type="primary"
+            size="small"
+            v-if="$store.state.user.username === username"
+            class="bt-color"
+          >保存</van-button>
+          <van-button type="primary" size="small" v-else @click="updateUsername">保存</van-button>
         </div>
       </template>
     </my-top-bar>
@@ -20,23 +27,48 @@
 export default {
   data() {
     return {
-      username:this.$store.state.user.username
+      username: this.$store.state.user.username
     };
   },
-  methods: {}
+  methods: {
+    // 更新用户名
+    async updateUsername() {
+      let res = await this.$http.put(
+        `/rest/users/${this.$store.state.user._id}`,
+        { username: this.username }
+      );
+      if (res.status === 200) {
+        this.$store.commit("updateUsername", this.username);
+        this.$toast({
+          type: "success",
+          message: "修改成功"
+        });
+      }
+    }
+  },
+  computed: {
+    
+  },
+  updated() {
+    console.log(this.username);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/scss/_variables.scss';
+@import "../../../assets/scss/_variables.scss";
 
 .username {
+  .bt-color {
+    background-color: map-get($colors, "dark-3");
+    border-color: map-get($colors, "dark-3");
+  }
   .field {
-      border-bottom:1px solid map-get($colors , 'green' );
-      &.van-cell {
-          background-color: map-get($colors , 'primary' );
-          width: 90%;
-      }
+    border-bottom: 1px solid map-get($colors, "green");
+    &.van-cell {
+      background-color: map-get($colors, "primary");
+      width: 90%;
+    }
   }
 }
 </style>

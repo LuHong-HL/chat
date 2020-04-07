@@ -11,6 +11,10 @@ const mutations = {
     // 更新用户基本信息
     updateUser(state, user) {
         state.user = user
+    },
+    // 更新用户名
+    updateUsername(state, username) {
+        state.user.username = username
     }
 }
 

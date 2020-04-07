@@ -853,7 +853,7 @@
   this.$store.commit('updateUser', user)
   ```
 
-  
++ 后端添加用户权限认证中间件
 
 
 ## Server 后台 API 接口设计

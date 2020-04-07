@@ -61,6 +61,10 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   //to and from are Route Object,next() must be called to resolve the hook
   if (!to.meta.isPublic && !sessionStorage.token) {
+    Vue.prototype.$toast({
+      type:"fail",
+      message: "请先登录"
+    })
     return next({ path: '/login' })
   }
   next()

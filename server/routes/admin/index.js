@@ -46,7 +46,7 @@ module.exports = app => {
     })
 
     //挂载子路由
-    app.use('/admin/api/rest/:resource', resourceMiddleware(), authorizationMiddleware(),  router)
+    app.use('/admin/api/rest/:resource', authorizationMiddleware(), resourceMiddleware(), router)
 
     //处理图片文件
     // const multer = require('multer')

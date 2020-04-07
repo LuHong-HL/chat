@@ -48,9 +48,6 @@ export default {
   },
   computed: {
     
-  },
-  updated() {
-    console.log(this.username);
   }
 };
 </script>

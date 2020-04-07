@@ -6,8 +6,8 @@ module.exports = app => {
     const jwt = require('jsonwebtoken')
     // User 模型导入
     const User = require('../../models/User')
-    // 登录中间件
-    // const authorizationMiddleware = require('../../middleware/authorization')
+    // 权限验证中间件
+    const userAuthorizationMiddleware = require('../../middleware/userAuthorization')
     // 获取资源中间件
     const resourceMiddleware = require('../../middleware/resource')
 
@@ -46,7 +46,7 @@ module.exports = app => {
     })
 
     //挂载子路由
-    app.use('/web/api/rest/:resource',resourceMiddleware(), router)
+    app.use('/web/api/rest/:resource',userAuthorizationMiddleware(), resourceMiddleware(), router)
 
     //处理图片文件
     // const multer = require('multer')

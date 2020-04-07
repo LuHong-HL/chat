@@ -24,6 +24,7 @@ module.exports = app => {
     })
     //根据 id 编辑对应模型资源
     router.put('/:id', async (req, res) => {
+        console.log(req.body)
         const model = await req.model.findByIdAndUpdate(req.params.id, req.body)
         res.send(model)
     })
@@ -49,13 +50,13 @@ module.exports = app => {
     app.use('/web/api/rest/:resource',userAuthorizationMiddleware(), resourceMiddleware(), router)
 
     //处理图片文件
-    // const multer = require('multer')
-    // const upload = multer({ dest: __dirname +'/../../uploads'})
-    // app.post('/admin/api/upload', upload.single('file'), async (req, res) =>{
-    //     const file = req.file
-    //     file.url = `http://localhost:3000/uploads/${file.filename}`
-    //     res.send(file)
-    // })
+    const multer = require('multer')
+    const upload = multer({ dest: __dirname +'/../../uploads'})
+    app.post('/web/api/upload', upload.single('img'), async (req, res) =>{
+        const file = req.file
+        file.url = `http://localhost:3000/uploads/${file.filename}`
+        res.send(file)
+    })
 
     // 登录校验处理
     app.post('/web/api/login', async (req, res) => {

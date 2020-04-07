@@ -8,7 +8,8 @@
             width="1.555555rem"
             height="1.555555rem"
             radius=".133333rem"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="$store.state.user.avatar"
+            fit="cover"
           />
         </template>
         <template v-slot:title>

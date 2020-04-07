@@ -15,6 +15,10 @@ const mutations = {
     // 更新用户名
     updateUsername(state, username) {
         state.user.username = username
+    },
+    // 更新头像
+    updateAvatar(state, url) {
+        state.user.avatar = url
     }
 }
 

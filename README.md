@@ -1187,7 +1187,7 @@ const routes = [
     ```javascript
     // index.js 主入口文件中 
     // 在index.js入口文件同级的地方创建一个新的文件夹 uploads 保存上传文件
-    // 开放uploads文件中的静态资源
+    // 开放uploads文件中的静态资源 express.static(__dirname + '</相对文件的路径>') 绝对路径
     app.use('/uploads', express.static(__dirname + '/uploads'))
     ```
 

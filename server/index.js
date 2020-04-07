@@ -10,7 +10,7 @@ app.use(require('cors')())
 // json格式数据处理
 app.use(express.json())
 //开放uploads文件中的静态资源
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname + '/./uploads'))
 
 //链接数据库
 require('./plugins/db')(app)

@@ -11,7 +11,8 @@ const schema = new mongoose.Schema({
         }
     },
     avatar: { //头像
-        type: String
+        type: String,
+        default:'https://img.yzcdn.cn/vant/cat.jpeg'
     },
     gender: { //性别
         type: Number,

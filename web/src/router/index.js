@@ -14,6 +14,10 @@ import SetUp from '../views/my/SetUp.vue'
 
 import Username from '../views/my/user/Username.vue'
 
+import NewFriend from '../views/address_book/NewFriend.vue'
+import AddFriend from '../views/address_book/AddFriend.vue'
+import SearchFriend from '../views/address_book/SearchFriend.vue'
+
 
 Vue.use(VueRouter)
 
@@ -49,6 +53,18 @@ const routes = [
   {
     path: '/set_up',
     component: SetUp,
+  },
+  {
+    path: '/new_friends',
+    component: NewFriend
+  },
+  {
+    path: '/new_friends/add_friends',
+    component: AddFriend
+  },
+  {
+    path: '/new_friends/search_friends',
+    component: SearchFriend
   }
 
 ]

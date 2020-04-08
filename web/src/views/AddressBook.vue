@@ -11,7 +11,7 @@
     <van-index-bar :index-list="indexList" class="index-class">
       <!-- 通讯录功能区 -->
       <van-cell-group>
-        <van-cell class="d-flex ai-center">
+        <van-cell class="d-flex ai-center" to="/new_friends">
           <template v-slot:icon>
             <div class="my-icon my-icon-1 d-flex jc-center ai-center">
               <van-icon class-prefix="iconfont iconbg-add-friend" size=".586667rem" color="#fff" />

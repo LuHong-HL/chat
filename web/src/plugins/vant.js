@@ -18,7 +18,8 @@ import {
     Toast,
     Form,
     Divider,
-    Uploader      
+    Uploader,
+    Search       
 } from 'vant';
 
 Vue.use(Icon);
@@ -40,4 +41,5 @@ Vue.use(Toast)
 Vue.use(Form)
 Vue.use(Divider)
 Vue.use(Uploader)
+Vue.use(Search)
 

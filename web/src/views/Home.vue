@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <my-top-bar left-text="通信">
       <template v-slot:right>
         <div class="nav-bar_right">
@@ -44,11 +44,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  padding-bottom: 1.333333rem;
-}
-.icon {
-  vertical-align: middle;
+<style lang="scss" scoped>
+.home {
+  .container {
+    padding-bottom: 1.333333rem;
+    .icon {
+    vertical-align: middle;
+  }
+  }
+  
 }
 </style>

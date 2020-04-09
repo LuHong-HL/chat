@@ -40,7 +40,31 @@
 export default {
   data() {
     return {};
-  }
+  },
+  created() {
+    // const socket = this.$io("http://localhost:3000");
+    //   console.log("socket", socket);
+    //   socket.emit('message', 'hello')
+    //   socket.on('message', (msg) =>{
+    //     console.log('message', msg)
+    //   })
+
+// 指定命名空间
+    // const chat = this.$io.connect("http://localhost:3000/chat", {
+    //   autoConnect: false,
+    // });
+      // chat.emit('message', 'hello')
+      //手动打开 socket
+      // chat.connect();
+      //手动关闭客户端对服务器的连接
+      // socket.disconnect()
+      // chat.on('connect', () =>{
+      //   chat.on('message', (msg)=>{
+      //     console.log('message', msg)
+      //   })
+      // })
+      
+  },
 };
 </script>
 

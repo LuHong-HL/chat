@@ -28,6 +28,11 @@ import MyCell from './components/MyCell.vue'
 Vue.component('my-top-bar', MyTopBar)
 Vue.component('my-cell', MyCell)
 
+// socket.io-client 
+import io from 'socket.io-client'
+Vue.prototype.$io = io
+// const socket = io('http://localhost')
+// console.log('socket', socket)
 
 Vue.config.productionTip = false
 

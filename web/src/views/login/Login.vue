@@ -86,15 +86,24 @@ export default {
     // 登录
     async login() {
       const res = await this.$http.post("/login", this.model.login);
-      // sessionStorage.token = res.data.token;
-      sessionStorage.setItem("token", res.data.token);
-      // 保存用户基本信息到 store 中
-      this.$store.commit('updateUser', res.data.user)
-      this.$toast({
-        type: "success",
-        message: "登录成功"
-      });
-      this.$router.push("/main");
+      console.log('user', res);
+      if (res.status === 200) {
+        // sessionStorage.token = res.data.token;
+        sessionStorage.setItem("token", res.data.token);
+        // 保存用户基本信息到 store 中
+        sessionStorage.setItem("user", JSON.stringify(res.data.user))
+        this.$store.commit("updateUser", res.data.user);
+        this.$toast({
+          type: "success",
+          message: "登录成功"
+        });
+        this.$router.push("/main");
+      } else {
+        this.$toast({
+          type: "fail",
+          message: "登录失败"
+        });
+      }
     },
     // login() {
     //   this.$http.post("/login", this.model.login).then(resolved =>{

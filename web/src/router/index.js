@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
+// 导入 store
+import store from '../store/index'
 
 import Home from '../views/Home.vue'
 import AddressBook from '../views/AddressBook.vue'
@@ -76,14 +78,26 @@ const router = new VueRouter({
 //注册全局前置守卫
 router.beforeEach((to, from, next) => {
   //to and from are Route Object,next() must be called to resolve the hook
-  if (!to.meta.isPublic && !sessionStorage.token) {
+  const token =sessionStorage.token //token
+  const user = JSON.parse(sessionStorage.user || '{}')  // 用户信息
+  if (!to.meta.isPublic && !token) {
     Vue.prototype.$toast({
       type:"fail",
       message: "请先登录"
     })
     return next({ path: '/login' })
+  }else{
+    // 判断是否有 socket ，更新 store 中的 socket
+    if(!store.state.isConnectSocket && token){
+      store.dispatch('createSocket') 
+    }
+    // 更新store 中的用户信息
+    if((Object.keys(store.state.user).length === 0) && (Object.keys(user).length !== 0)){
+      store.commit('updateUser', user)
+    }
+    next()
   }
-  next()
+  
 })
 
 export default router

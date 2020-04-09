@@ -12,16 +12,17 @@ const schema = new mongoose.Schema({
     },
     avatar: { //头像
         type: String,
-        default:'https://img.yzcdn.cn/vant/cat.jpeg'
+        default: 'https://img.yzcdn.cn/vant/cat.jpeg'
     },
     gender: { //性别
         type: Number,
-        default: 0 
+        default: 0
     },
     signature: { //个性签名
         type: String,
         default: '这人很懒，没留下签名'
-    }
+    },
+    friends: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }], //朋友
 })
 
 // 模型会自动变成复数

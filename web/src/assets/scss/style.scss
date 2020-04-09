@@ -14,7 +14,7 @@ body {
     background-color: #ededed;
 }
 
-// color
+// color  .text-green  .bg-green
 @each $colorKey, $color in $colors {
     .text-#{$colorKey} {
         color: $color;

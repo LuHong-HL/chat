@@ -855,6 +855,69 @@
 
 + 后端添加用户权限认证中间件
 
++ 在 Vue 中输入框自动获取焦点的方式
+
+  - 原生JS操作DOM
+
+  ```js
+  //使用mounted钩子函数，它表示页面一加载进来就执行函数里面的内容（和window.onload类似）
+  //html部分
+   编号:<input type="text" v-model='newId' id='inputId'>
+  //vue对象
+  var vm = new Vue({
+      el: '#app',
+      data: {
+        newId: '',    
+      },
+      // 注意：mounted钩子函数的名字不能随便取，而且它不能写在methods属性。
+      mounted () {     
+         document.getElementById('inputId').focus()
+      }
+  ```
+
+  - ref方式实现
+
+  ```javascript
+  //html部分
+   编号:<input type="text" v-model='newId' ref='id'>
+  //vue对象
+  var vm = new Vue({
+      el: '#app',
+      data: {
+        newId: '',    
+      },
+      mounted () {     
+         this.$refs.id.focus();
+      }
+  ```
+
+  - 使用自定义指令
+
+  ```javascript
+  //1.Vue.directive('自定义指令的名字(可以随便取，但是全部小写)',{inserted:function(el,binding){}})
+  //2. inserted钩子函数，它表示自定义指令插入到标签中的时候就执行
+  //3. inserted钩子函数有两个参数（el,binding） el表示使用自定义指令的元素，binding表示自定义指令的信息
+  
+  //html部分
+   编号:<input type="text" v-model='newId' v-myfocus>
+  //自定义指令
+          Vue.directive('myfocus', {
+              inserted: function(el, binding) {
+                  //console.log(el)
+                  el.focus()
+              }
+          })
+  //vue对象
+  var vm = new Vue({
+      el: '#app',
+      data: {
+        newId: '',    
+      },
+  })
+  ```
+
+  
+
 
 ## Server 后台 API 接口设计
 

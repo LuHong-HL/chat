@@ -75,8 +75,11 @@ export default {
     //注销账号
     logout() {
       // 1. 清除 token
-      // 2. 跳转到登录页面
+      // 2. 断开 socket 连接
+      // 3. 跳转到登录页面
       sessionStorage.removeItem('token')
+      sessionStorage.removeItem('user')
+      this.$store.dispatch('disconnectSocket')
       this.$router.push('/login')
     }
   }

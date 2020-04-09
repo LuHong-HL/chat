@@ -7,7 +7,12 @@
       background="#ededed"
       placeholder="请输入通信号/手机号"
       input-align="center"
+      @focus="toSearchPage"
     />
+    <div class="d-flex jc-center pt-1 pb-3">
+      <span class="fs-sm text-dark-3">我的通信号：{{$store.state.user.phone}}</span>
+      <van-icon class="pl-1" class-prefix="iconfont iconerweima" size=".373333rem" color="#959595" />
+    </div>
   </div>
 </template>
 
@@ -20,7 +25,14 @@ export default {
       }
     };
   },
-  methods: {}
+  methods: {
+    //跳转到搜索页面
+    toSearchPage() {
+      this.$router.push({
+        path: "/new_friends/search_friends"
+      });
+    }
+  }
 };
 </script>
 

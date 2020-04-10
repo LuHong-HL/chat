@@ -1,7 +1,8 @@
 <template>
   <div class="new_friends">
     <!-- 顶部 bar  -->
-    <my-top-bar left-arrow left-text="新朋友" to="/main/address_book">
+    <!-- to="/main/address_book" -->
+    <my-top-bar left-arrow left-text="新朋友" >
       <template v-slot:right>
         <router-link to="/new_friends/add_friends" tag="div">
           <span>添加朋友</span>
@@ -71,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/_variables.scss';
+@import '../../../assets/scss/_variables.scss';
 
 .new_friends {
   .search {

@@ -1,6 +1,6 @@
 <template>
   <div class="username">
-    <my-top-bar left-arrow left-text="更改名字" to="/user">
+    <my-top-bar left-arrow left-text="更改名字">
       <template v-slot:right>
         <div class="nav-bar_right">
           <!-- <span class="va-middle iconfont iconsousuo pr-3 fs-xxl"></span>

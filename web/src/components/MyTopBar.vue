@@ -1,16 +1,15 @@
 <template>
   <div>
     <van-sticky>
-      <div class="topbar bg-gray fs-xl d-flex jc-between  p-1 ai-center">
+      <div class="topbar bg-gray fs-xl d-flex jc-between p-1 ai-center">
         <slot name="left">
           <div class="nav-bar_left">
-            <router-link
-              tag="i"
-              :to="to"
+            <i
               v-if="leftArrow"
               class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"
-            ></router-link>
-            <span class="pl-1" >{{leftText ? leftText : ''}}</span>
+              @click="back"
+            ></i>
+            <span class="pl-1">{{leftText ? leftText : ''}}</span>
           </div>
         </slot>
 
@@ -30,14 +29,16 @@ export default {
     "left-arrow": {
       type: Boolean,
       default: false
-    },
-    to: {
-      type: String,
-      default: ""
     }
   },
   data() {
     return {};
+  },
+  methods: {
+    // 返回上一层
+    back() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>

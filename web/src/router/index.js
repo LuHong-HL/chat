@@ -16,9 +16,12 @@ import SetUp from '../views/my/SetUp.vue'
 
 import Username from '../views/my/user/Username.vue'
 
-import NewFriend from '../views/address_book/NewFriend.vue'
-import AddFriend from '../views/address_book/AddFriend.vue'
-import SearchFriend from '../views/address_book/SearchFriend.vue'
+import NewFriend from '../views/address_book/add_friends/NewFriend.vue'
+import AddFriend from '../views/address_book/add_friends/AddFriend.vue'
+import SearchFriend from '../views/address_book/add_friends/SearchFriend.vue'
+
+import UserProfile from '../views/address_book/add_friends/UserProfile.vue'
+import ApplyAddFriend from '../views/address_book/add_friends/ApplyAddFriend.vue'
 
 
 Vue.use(VueRouter)
@@ -67,6 +70,14 @@ const routes = [
   {
     path: '/new_friends/search_friends',
     component: SearchFriend
+  },
+  {
+    path: '/user_profiles',
+    component: UserProfile,
+  },
+  {
+    path: '/apply_add_friends',
+    component: ApplyAddFriend,
   }
 
 ]

@@ -23,6 +23,11 @@ module.exports = app => {
         const model = await req.model.create(req.body)
         res.send(model)
     })
+    // 根据条件查找对应模型资源
+    router.post('/conditions', async (req, res) => {
+        const items = await req.model.find(req.body)
+        res.send(items)
+    })
     //根据 id 编辑对应模型资源
     router.put('/:id', async (req, res) => {
         console.log(req.body)
@@ -46,11 +51,16 @@ module.exports = app => {
         const model = await req.model.findById(req.params.id)
         res.send(model)
     })
+    //根据 条件获取对应模型的资源
+    // router.get('/conditions', async (req, res) => {
+    //     console.log(req.body)
+    //     // const model = await req.model.find(req.body)
+    //     res.send(req.body)
+    // })
 
 
     //根据用户提供的 userId 编辑对应模型资源 有则更新无则新建
     router.put('/', async (req, res) => {
-        console.log(req.body)
         assert(req.body.userId, 400, '数据格式不正确')
         const model = await req.model.findOneAndUpdate({ userId: req.body.userId }, req.body, {upsert: true})
         res.send(model)

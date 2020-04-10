@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <my-top-bar left-arrow left-text="个人信息" to="/main/my"></my-top-bar>
+    <my-top-bar left-arrow left-text="个人信息" ></my-top-bar>
     <van-cell-group>
       <!-- 图片上传 -->
       <van-uploader :after-read="afterRead">

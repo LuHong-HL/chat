@@ -1,6 +1,6 @@
 <template>
   <div class="set_up-container">
-    <my-top-bar left-arrow left-text="设置" to="/main/my"></my-top-bar>
+    <my-top-bar left-arrow left-text="设置"></my-top-bar>
     <!-- set_up-inner-container 部分 -->
     <div class="set_up-inner-container">
       <van-cell-group>

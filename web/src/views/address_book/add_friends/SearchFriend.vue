@@ -42,7 +42,7 @@ export default {
     return {
       model: {
         phone: "", // 手机号
-        isSearch: false, //是否查找朋友成功
+        isSearch: false, //是否显示用户不存在UI
         isDisplay: false // 是否显示所搜框
       }
     };
@@ -53,15 +53,25 @@ export default {
       this.$router.go(-1);
     },
     // 查找朋友
-    searchFriends(message) {
+    async searchFriends(message) {
       this.hideSearch();
+      // 查找好友
       // 查找成功跳转到陌生人页面，进一步操作
       // 失败提示
-      if (message) {
-        this.model.isSearch = true;
-      } else {
-        this.model.isSearch = true;
+      const res =await this.$http.post(`/rest/users/conditions`, {phone: message})
+      console.log(res)
+      if(res.data.length ===  0){ //没找到
+          this.model.isSearch = true;
+      }else{ //查找到对应用户
+          this.model.isSearch = false;
+          this.$router.push({
+            path:'/user_profiles',
+            query:res.data[0]
+          })
+
+          
       }
+      
     },
     // 显示搜索框
     displaySearch() {
@@ -81,7 +91,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/_variables.scss";
+@import "../../../assets/scss/_variables.scss";
 
 .search_friend {
   .search {

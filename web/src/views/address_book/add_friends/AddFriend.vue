@@ -1,6 +1,6 @@
 <template>
   <div class="add_friend">
-    <my-top-bar left-arrow left-text="添加朋友" to="/new_friends"></my-top-bar>
+    <my-top-bar left-arrow left-text="添加朋友"></my-top-bar>
     <van-search
       class="search"
       v-model="model.phone"

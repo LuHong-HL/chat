@@ -60,7 +60,7 @@ const actions = {
         let socket = {}
         socket.userId = state.user._id
         socket.socketId = state.socket.id
-        Vue.prototype.$http.put(`/rest/socket`, socket)
+        Vue.prototype.$http.put(`/rest/sockets`, socket)
     }
 }
 

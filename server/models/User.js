@@ -23,6 +23,11 @@ const schema = new mongoose.Schema({
         default: '这人很懒，没留下签名'
     },
     friends: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }], //朋友
+    addFriendinformations: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'addFriendinformation' }], //加好友信息
+    socketId: { // 用户的 socketId 登录时才有，下线时为空
+        type: String,
+        default: ''
+    }
 })
 
 // 模型会自动变成复数

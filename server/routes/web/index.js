@@ -16,9 +16,10 @@ module.exports = app => {
         // mergeParams:true
         useUnifiedTopology: true
     })
-    
+
     //新建对应模型资源
     router.post('/', async (req, res) => {
+        console.log('socket', req.body)
         const model = await req.model.create(req.body)
         res.send(model)
     })
@@ -46,13 +47,22 @@ module.exports = app => {
         res.send(model)
     })
 
+
+    //根据用户提供的 userId 编辑对应模型资源 有则更新无则新建
+    router.put('/', async (req, res) => {
+        console.log(req.body)
+        assert(req.body.userId, 400, '数据格式不正确')
+        const model = await req.model.findOneAndUpdate({ userId: req.body.userId }, req.body, {upsert: true})
+        res.send(model)
+    })
+
     //挂载子路由
-    app.use('/web/api/rest/:resource',userAuthorizationMiddleware(), resourceMiddleware(), router)
+    app.use('/web/api/rest/:resource', userAuthorizationMiddleware(), resourceMiddleware(), router)
 
     //处理图片文件
     const multer = require('multer')
-    const upload = multer({ dest: __dirname +'/../../uploads'})
-    app.post('/web/api/upload', upload.single('img'), async (req, res) =>{
+    const upload = multer({ dest: __dirname + '/../../uploads' })
+    app.post('/web/api/upload', upload.single('img'), async (req, res) => {
         const file = req.file
         file.url = `http://localhost:3000/uploads/${file.filename}`
         res.send(file)
@@ -70,8 +80,8 @@ module.exports = app => {
         assert(isValid, 422, '密码错误')
         // // 3. 返回 token
         const token = jwt.sign({ id: userAndPassword._id }, app.get('secret'))
-        for( let [key, value] of Object.entries(userAndPassword._doc)){
-            if(key !== 'password'){
+        for (let [key, value] of Object.entries(userAndPassword._doc)) {
+            if (key !== 'password') {
                 user[key] = value
             }
         }
@@ -79,7 +89,7 @@ module.exports = app => {
     })
 
     //错误统一处理函数
-    app.use( (err, req, res, next) => {
+    app.use((err, req, res, next) => {
         res.status(err.statusCode || 500).send({
             message: err.message
         });

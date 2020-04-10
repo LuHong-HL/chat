@@ -28,10 +28,10 @@ require('./routes/web/index')(app)
 
 
 // 覆盖默认方法以生成您的自定义套接字ID
-let custom_id = 1
-io.engine.generateId = (req) => {
-    return custom_id++; // custom id must be unique
-}
+// let custom_id = 1
+// io.engine.generateId = (req) => {
+//     return custom_id++; // custom id must be unique
+// }
 
 
 // 建立 socket.io 连接事件
@@ -48,21 +48,21 @@ io.engine.generateId = (req) => {
 
 let chat = io.of('/chat')
     .on('connection', socket => {
-        // console.log('有新用户连接上',socket,chat)
+        console.log('有新用户连接上',socket.id)
         // 获取连接到此命名空间的客户机ID（跨所有节点（如果适用））。
         chat.clients((error, clients) => {
             if (error) throw error;
             console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
         })
 
-        socket.emit('message', {
-            that: 'only'
-            , '/chat': 'will get'
-        })
-        chat.emit('message', {
-            everyone: 'in'
-            , '/chat': 'will get'
-        })
+        // socket.emit('message', {
+        //     that: 'only'
+        //     , '/chat': 'will get'
+        // })
+        // chat.emit('message', {
+        //     everyone: 'in'
+        //     , '/chat': 'will get'
+        // })
 
         socket.on('disconnect', () => {
             console.log('user disconnected')

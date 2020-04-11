@@ -5,7 +5,7 @@ Vue.use(Vuex);
 // vuex 的状态 类似组件的data
 const state = {
     user: {}, // 用户基本信息
-    socket: { a: 1 }, //用户socket信息
+    socket: {}, //用户socket信息
     sockeId: '', //用户 socket.id 信息
     isConnectSocket: false, //是否连接 socket
 }
@@ -35,7 +35,16 @@ const mutations = {
         state.socketId = socket.id
         state.isConnectSocket = true
         state.socket = socket
+    },
+    // 清除 socket
+    clearSocket(state) {
+        state.socket = {}
+        state.isConnectSocket = false
     }
+}
+
+const getters = {
+    
 }
 
 // Action 类似于 mutation，不同在于：
@@ -43,20 +52,21 @@ const mutations = {
 // Action 可以包含任意异步操作
 const actions = {
     // 创建socket
-    async createSocket({ commit, dispatch }) {
+    createSocket({ commit, dispatch }) {
         // 指定命名空间 创建 socket
         const socket = Vue.prototype.$io.connect("http://localhost:3000/chat");
-        socket.on('connect', () => {
+        socket.on('connect', async () => {
             commit('createSocket', socket)
-            dispatch('addSocketMap')
+            await dispatch('addSocketMap')
         })
     },
     //断开 socket 连接
-    disconnectSocket({ state }) {
+    disconnectSocket({ state, commit }) {
         state.socket.disconnect();
+        commit('clearSocket')
     },
     // 添加 socket.id 和 userId 的映射
-    async addSocketMap({ state }) {
+    addSocketMap({ state }) {
         let socket = {}
         socket.userId = state.user._id
         socket.socketId = state.socket.id
@@ -68,7 +78,8 @@ const actions = {
 const store = new Vuex.Store({
     state,
     mutations,
-    actions
+    actions,
+    getters
 });
 
 // 导出 store

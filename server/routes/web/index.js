@@ -98,6 +98,13 @@ module.exports = app => {
         res.send({ token, user })
     })
 
+     // 登录校验处理
+     app.post('/web/api/register', async (req, res) => {
+        const model = await User.create(req.body)
+        res.send(model)
+    })
+
+
     //错误统一处理函数
     app.use((err, req, res, next) => {
         res.status(err.statusCode || 500).send({

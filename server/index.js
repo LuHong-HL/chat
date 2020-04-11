@@ -4,7 +4,7 @@ const app = express()
 
 // socket.io 的引入
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+// const io = require('socket.io')(server);
 
 
 //设置全局属性
@@ -23,6 +23,8 @@ require('./plugins/db')(app)
 require('./routes/admin/index')(app)
 //web 加载路由
 require('./routes/web/index')(app)
+// 加载 socket.io 
+require('./routes/web/socket')(server)
 
 
 
@@ -46,34 +48,35 @@ require('./routes/web/index')(app)
 //      });
 // });
 
-let chat = io.of('/chat')
-    .on('connection', socket => {
-        console.log('有新用户连接上',socket.id)
-        // 获取连接到此命名空间的客户机ID（跨所有节点（如果适用））。
-        chat.clients((error, clients) => {
-            if (error) throw error;
-            console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
-        })
+// let chat = io.of('/chat')
+//     .on('connection', socket => {
+//         console.log('有新用户连接上',socket.id)
+//         // 获取连接到此命名空间的客户机ID（跨所有节点（如果适用））。
+//         chat.clients((error, clients) => {
+//             if (error) throw error;
+//             console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
+//         })
 
-        // socket.emit('message', {
-        //     that: 'only'
-        //     , '/chat': 'will get'
-        // })
-        // chat.emit('message', {
-        //     everyone: 'in'
-        //     , '/chat': 'will get'
-        // })
+//         socket.on('addFriend', (socketId, body) =>{
+//             console.log('socket.id',socket.id)
+//             console.log('socketId, body',socketId ,body)
+//             // socket.emit('addFriend', body)
+//             // chat.emit('addFriend', body )
+//             // socket.broadcast.emit('addFriend', body)
+//             socket.broadcast.to(socketId).emit('addFriend', body)
+//         })
+       
 
-        socket.on('disconnect', () => {
-            console.log('user disconnected')
-        });
-    });
-    // 注册一个中间件，这是一个为每个传入执行的功能Socket，并且接收套接字和可选地将执行延迟到下一个注册的中间件的参数。
-    io.use((socket, next) => {
-        // console.log(socket.request.headers)
-        if (socket.request.headers.cookie) return next();
-        next(new Error('Authentication error'));
-      });
+//         socket.on('disconnect', () => {
+//             console.log('user disconnected')
+//         });
+//     });
+//     // 注册一个中间件，这是一个为每个传入执行的功能Socket，并且接收套接字和可选地将执行延迟到下一个注册的中间件的参数。
+//     io.use((socket, next) => {
+//         // console.log(socket.request.headers)
+//         if (socket.request.headers.cookie) return next();
+//         next(new Error('Authentication error'));
+//       });
 
 
 server.listen(3000, () => {

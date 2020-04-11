@@ -59,7 +59,6 @@ export default {
       // 查找成功跳转到陌生人页面，进一步操作
       // 失败提示
       const res =await this.$http.post(`/rest/users/conditions`, {phone: message})
-      console.log(res)
       if(res.data.length ===  0){ //没找到
           this.model.isSearch = true;
       }else{ //查找到对应用户

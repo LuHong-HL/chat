@@ -93,7 +93,7 @@ export default {
         // 保存用户基本信息到 store 中
         sessionStorage.setItem("user", JSON.stringify(res.data.user))
         this.$store.commit("updateUser", res.data.user);
-        this.$store.dispatch('createSocket')
+        // this.$store.dispatch('createSocket')
         this.$toast({
           type: "success",
           message: "登录成功"
@@ -118,7 +118,7 @@ export default {
     // },
     // 注册
     async register() {
-      const res = await this.$http.post("/rest/users", this.model.register);
+      const res = await this.$http.post("/register", this.model.register);
       this.$toast({
         type: "success",
         message: "注册成功"

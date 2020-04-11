@@ -17,7 +17,9 @@
         </template>
         <template v-slot:label>
           <div class="d-flex">
-            <span class="cell-title fs-md pl-1 text-dark-3 flex-grow-1">通信号:{{$store.state.user.phone}}</span>
+            <span
+              class="cell-title fs-md pl-1 text-dark-3 flex-grow-1"
+            >通信号:{{$store.state.user.phone}}</span>
             <div class="d-flex">
               <div class="pr-1">
                 <van-icon class-prefix="iconfont iconerweima" size=".373333rem" color="#e8e8e8" />
@@ -46,16 +48,27 @@
         </template>
       </van-cell>
     </van-cell-group>
+    <span>socket测试{{message}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
   created() {
+    setTimeout(()=>{
+      this.$store.state.socket.on('addFriend', (res)=>{
+        this.message = res
+    })
+    }, 500)
+   
   },
+  data() {
+    return {
+      message: "",
+      socket: ""
+    };
+  },
+  
 };
 </script>
 

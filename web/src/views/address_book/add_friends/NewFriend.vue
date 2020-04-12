@@ -93,17 +93,19 @@ export default {
       // 2. 修改 AddFriendInformation 数据库 status字段 为 1
       // 3. 前端获取最新数据，渲染
 
-      // 此处 friends 是 store 中的一个引用， friends 改变等于 store中的改变
-      const friends = this.$store.state.user.friends;
-      friends.push(friend._id);
+      const res =await this.$http.get(`/rest/users/${this.$store.state.user._id}`)
+      let friends = res.data.friends
+      friends.push(friend.fromId._id);
       await this.$http.put(`/rest/users/${this.$store.state.user._id}`, {
         friends: friends
       });
       await this.$http.put(
-        `/rest/add_friend_Informations/${friend._id}`,
+          `/rest/add_friend_Informations/${friend._id}`,
         { status: 1 }
       );
       this.getNewFriends();
+      // 更新 sessionStorage 及 store 中的 user 
+      this.$store.dispatch('updateUser')
     }
   }
 };

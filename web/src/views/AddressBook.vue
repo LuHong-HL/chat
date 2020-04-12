@@ -65,8 +65,12 @@
 
 <script>
 export default {
+  created() {
+    this.getFriendsList()
+  },
   data() {
     return {
+      friendsList: [], //好友列表
       indexList: [
         "A",
         "B",
@@ -96,7 +100,15 @@ export default {
         "Z"
       ]
     };
-  }
+  },
+  methods: {
+    //获取好友列表
+    getFriendsList() {
+      const friendsList = this.$store.state.user.friends
+      console.log('friends', friendsList)
+        
+    }
+  },
 };
 </script>
 

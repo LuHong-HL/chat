@@ -13,14 +13,21 @@ const mutations = {
     updateUser(state, user) {
         console.log('storeUser', user)
         state.user = user
+        sessionStorage.user = JSON.stringify(state.user)
     },
     // 更新用户名
     updateUsername(state, username) {
         state.user.username = username
+        let user = JSON.parse(sessionStorage.user)
+        user.username = username
+        sessionStorage.user = JSON.stringify(user)
     },
     // 更新头像
     updateAvatar(state, url) {
         state.user.avatar = url
+        let user = JSON.parse(sessionStorage.user)
+        user.avatar = url
+        sessionStorage.user = JSON.stringify(user)
     },
     // 更新用户 socket
     // updateSocket(state, socket) {
@@ -54,8 +61,8 @@ const actions = {
     // 更新 User
     async updateUser({commit, state}) {
         console.log('storeActionsUser')
-        const user =await Vue.prototype.$http.get(`/rest/users/${state.user._id}`)
-        commit('updateUser', user)
+        const res =await Vue.prototype.$http.get(`/rest/users/detail/${state.user._id}`)
+        commit('updateUser', res.data)
     },
     // 断开 socket 连接
     disconnectSocket({state}) {

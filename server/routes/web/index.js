@@ -53,17 +53,22 @@ module.exports = app => {
     })
     //根据 userId 获取 addFriendInformations
     router.get('/add_friend_informations/:id', async (req, res) => {
-        
+
         // console.log('model', model)
-        const model = await req.model.findById(req.params.id, {addFriendInformations:1}).populate({path: 'addFriendInformations',populate: { path: 'fromId' }})
+        const model = await req.model.findById(req.params.id, { addFriendInformations: 1 }).populate({ path: 'addFriendInformations', populate: { path: 'fromId' } })
         res.send(model)
+    })
+    // 获取 根据 userId 获取 user 的详细信息
+    router.get('/detail/:id', async(req, res) => {
+        let user = await req.model.findById(req.params.id).populate({ path: 'friends' })
+        res.send(user)
     })
 
 
     //根据用户提供的 userId 编辑对应模型资源 有则更新无则新建
     router.put('/', async (req, res) => {
         assert(req.body.userId, 400, '数据格式不正确')
-        const model = await req.model.findOneAndUpdate({ userId: req.body.userId }, req.body, {upsert: true})
+        const model = await req.model.findOneAndUpdate({ userId: req.body.userId }, req.body, { upsert: true })
         res.send('OK')
     })
 
@@ -84,7 +89,16 @@ module.exports = app => {
         // 1. 根据用户名找用户
         const { phone, password } = req.body
         let user = {}
-        let userAndPassword = await User.findOne({ phone: phone }).select('+password')
+
+        let userAndPassword = await User.findOne({ phone: phone })
+            .select('+password')
+            .populate({ path: 'friends' })
+        // .exec((err, data)=>{
+        //     console.log('data', data)
+
+        // })
+
+        console.log('user', userAndPassword)
         assert(userAndPassword, 422, '用户不存在')
         // // 2. 校验密码
         const isValid = require('bcryptjs').compareSync(password, userAndPassword.password)
@@ -99,8 +113,8 @@ module.exports = app => {
         res.send({ token, user })
     })
 
-     // 登录校验处理
-     app.post('/web/api/register', async (req, res) => {
+    // 登录校验处理
+    app.post('/web/api/register', async (req, res) => {
         const model = await User.create(req.body)
         res.send(model)
     })

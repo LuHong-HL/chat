@@ -2,7 +2,7 @@
   <div class="new_friends">
     <!-- 顶部 bar  -->
     <!-- to="/main/address_book" -->
-    <my-top-bar left-arrow left-text="新朋友" >
+    <my-top-bar left-arrow left-text="新朋友">
       <template v-slot:right>
         <router-link to="/new_friends/add_friends" tag="div">
           <span>添加朋友</span>
@@ -24,7 +24,6 @@
         class="cell-container d-flex ai-center fs-lg"
         v-for="(item, index) in newFriends"
         :key="index"
-        
       >
         <template v-slot:icon>
           <van-image
@@ -43,8 +42,13 @@
           <span class="cell-title fs-sm pl-1 text-dark-3">{{item.checkMessage}}</span>
         </template>
         <template v-slot:default>
-          <van-button type="primary" size="small">接受</van-button>
-          <!-- <span>已添加</span> -->
+          <van-button
+            v-if="item.status === 3"
+            type="primary"
+            size="small"
+            @click="agreeToAddFriend(item)"
+          >接受</van-button>
+          <span v-if="item.status === 1" class="pr-0-5">已添加</span>
           <!-- <span>已拒绝</span> -->
         </template>
       </van-cell>
@@ -56,39 +60,57 @@
 export default {
   sockets: {
     // 监听 addFriend 事件
-      addFriend(res) {
-          this.newFriends = res.addFriendInformations
-      }
+    addFriend(res) {
+      this.newFriends = res.addFriendInformations;
+    }
   },
   created() {
-    this.getNewFriends()
+    this.getNewFriends();
   },
   data() {
     return {
-        phone:'', // 手机号
-        newFriends:[], //新朋友信息列表
-      
+      phone: "", // 手机号
+      newFriends: [] //新朋友信息列表
     };
   },
   methods: {
     // 跳转到搜索页面
     toSearchPage() {
       this.$router.push({
-        path:'/new_friends/search_friends'
-      })
+        path: "/new_friends/search_friends"
+      });
     },
     // 获取 新朋友列表
     async getNewFriends() {
-      let res = await this.$http.get(`/rest/users/add_friend_informations/${this.$store.state.user._id}`)
-      this.newFriends = res.data.addFriendInformations
+      let res = await this.$http.get(
+        `/rest/users/add_friend_informations/${this.$store.state.user._id}`
+      );
+      this.newFriends = res.data.addFriendInformations;
+    },
+    // 同意添加朋友
+    async agreeToAddFriend(friend) {
+      // 1. 修改 User 数据库的 friends 字段 ,更新 store 中的 user
+      // 2. 修改 AddFriendInformation 数据库 status字段 为 1
+      // 3. 前端获取最新数据，渲染
 
+      // 此处 friends 是 store 中的一个引用， friends 改变等于 store中的改变
+      const friends = this.$store.state.user.friends;
+      friends.push(friend._id);
+      await this.$http.put(`/rest/users/${this.$store.state.user._id}`, {
+        friends: friends
+      });
+      await this.$http.put(
+        `/rest/add_friend_Informations/${friend._id}`,
+        { status: 1 }
+      );
+      this.getNewFriends();
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/scss/_variables.scss';
+@import "../../../assets/scss/_variables.scss";
 
 .new_friends {
   .search {
@@ -97,7 +119,7 @@ export default {
     }
   }
   .container {
-    margin-top: map-get($spacing-sizes, '2' ) * $spacing-base-size;
+    margin-top: map-get($spacing-sizes, "2") * $spacing-base-size;
     .icon {
       vertical-align: middle;
     }

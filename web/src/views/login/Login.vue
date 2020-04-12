@@ -65,6 +65,7 @@
 
 <script>
 export default {
+
   data() {
     return {
       model: {
@@ -93,7 +94,7 @@ export default {
         // 保存用户基本信息到 store 中
         sessionStorage.setItem("user", JSON.stringify(res.data.user))
         this.$store.commit("updateUser", res.data.user);
-        // this.$store.dispatch('createSocket')
+        this.$socket.connect()
         this.$toast({
           type: "success",
           message: "登录成功"

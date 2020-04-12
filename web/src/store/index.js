@@ -11,6 +11,7 @@ const state = {
 const mutations = {
     // 更新用户基本信息
     updateUser(state, user) {
+        console.log('storeUser', user)
         state.user = user
     },
     // 更新用户名
@@ -49,6 +50,18 @@ const actions = {
     },
     SOCKET_addFriend() {
         Vue.prototype.$notify({ type: 'success', message: '有新好友请求' });
+    },
+    // 更新 User
+    async updateUser({commit, state}) {
+        console.log('storeActionsUser')
+        const user =await Vue.prototype.$http.get(`/rest/users/${state.user._id}`)
+        commit('updateUser', user)
+    },
+    // 断开 socket 连接
+    disconnectSocket({state}) {
+        state.user = {}
+        Vue.prototype.$socket.disconnect()
+
     }
 }
 

@@ -5,10 +5,16 @@
         <slot name="left">
           <div class="nav-bar_left">
             <i
-              v-if="leftArrow"
+              v-if="leftArrow && !to"
               class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"
               @click="back"
             ></i>
+            <router-link
+              :to="to"
+              tag="i"
+              v-if="leftArrow && to"
+              class="va-middle icon-arrow-left iconfont icon-left-arrow fs-xxxl"
+            ></router-link>
             <span class="pl-1">{{leftText ? leftText : ''}}</span>
           </div>
         </slot>
@@ -29,6 +35,10 @@ export default {
     "left-arrow": {
       type: Boolean,
       default: false
+    },
+    "to": {
+      type: String,
+      default: ""
     }
   },
   data() {

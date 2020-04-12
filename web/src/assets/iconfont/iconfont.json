@@ -6,6 +6,34 @@
   "description": "基于 node.js 和 vue.js 的即时通讯 ",
   "glyphs": [
     {
+      "icon_id": "436016",
+      "name": "语音",
+      "font_class": "yuyin",
+      "unicode": "e805",
+      "unicode_decimal": 59397
+    },
+    {
+      "icon_id": "1305459",
+      "name": "大笑",
+      "font_class": "daxiao",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "7550210",
+      "name": "添加",
+      "font_class": "tianjia2",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "12097452",
+      "name": "键盘",
+      "font_class": "jianpan",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
       "icon_id": "925441",
       "name": "标签",
       "font_class": "biaoqian",

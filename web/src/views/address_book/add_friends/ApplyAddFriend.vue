@@ -41,6 +41,11 @@ export default {
       console.log("socketMap", socketMap);
       const socketId = socketMap.data[0].socketId;
       this.$socket.emit("addFriend", socketId, { toId: this.friend._id, fromId:this.$store.state.user._id, checkMessage: this.checkMessage});
+      this.$router.go(-1)
+       this.$toast({
+         type: 'success',
+         message: '请求成功'
+       });
     }
   }
 };

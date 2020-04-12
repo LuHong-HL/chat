@@ -93,12 +93,7 @@ module.exports = app => {
         let userAndPassword = await User.findOne({ phone: phone })
             .select('+password')
             .populate({ path: 'friends' })
-        // .exec((err, data)=>{
-        //     console.log('data', data)
 
-        // })
-
-        console.log('user', userAndPassword)
         assert(userAndPassword, 422, '用户不存在')
         // // 2. 校验密码
         const isValid = require('bcryptjs').compareSync(password, userAndPassword.password)

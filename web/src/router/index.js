@@ -23,6 +23,9 @@ import SearchFriend from '../views/address_book/add_friends/SearchFriend.vue'
 import UserProfile from '../views/address_book/add_friends/UserProfile.vue'
 import ApplyAddFriend from '../views/address_book/add_friends/ApplyAddFriend.vue'
 
+import Friend from '../views/address_book/group_chat/Friend.vue'
+import Chat from '../views/address_book/group_chat/Chat.vue'
+
 
 Vue.use(VueRouter)
 
@@ -78,7 +81,15 @@ const routes = [
   {
     path: '/apply_add_friends',
     component: ApplyAddFriend,
-  }
+  },
+  {
+    path: '/address_book/friend',
+    component: Friend,
+  },
+  {
+    path: '/address_book/chat',
+    component: Chat,
+  },
 
 ]
 

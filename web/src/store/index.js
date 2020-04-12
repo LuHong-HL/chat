@@ -4,8 +4,8 @@ Vue.use(Vuex);
 
 // vuex 的状态 类似组件的data
 const state = {
-    user: {}, // 用户基本信息
-
+    user: {}, // 用户基本信息 {}
+    chatMessage: {}, //聊天信息 {[{},{}],[]}
 }
 // 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
 const mutations = {
@@ -34,12 +34,32 @@ const mutations = {
     //     state.socket = socket
     // },
 
+    // 更新 chatMessage 
+    privateChat(state, res) {
+        console.log('chatMessage', res)
+
+        if (state.chatMessage[res.fromId] === undefined) {
+            Vue.prototype.$set(state.chatMessage, res.fromId, [])
+        }
+        state.chatMessage[res.fromId].push(res)
+
+        console.log('chatMessage2', state.chatMessage)
+    },
+    // 更新自己发送的 chatMessage
+    privateChatSelf(state, data) {
+        if (state.chatMessage[data.toId] === undefined) {
+            Vue.prototype.$set(state.chatMessage, data.toId, [])
+        }
+        state.chatMessage[data.toId].push(data)
+    }
 
 
 }
 
 const getters = {
-
+    // chatMessage: (state) => {
+    //     return state.chatMessage[this.friend._id]
+    // }
 }
 
 // Action 类似于 mutation，不同在于：
@@ -55,17 +75,30 @@ const actions = {
         await Vue.prototype.$http.put(`/rest/sockets`, socket)
 
     },
+    // socket 监听 添加好友请求
     SOCKET_addFriend() {
+
         Vue.prototype.$notify({ type: 'success', message: '有新好友请求' });
     },
+    // socket 监听 私聊事件
+    SOCKET_privateChat({commit}, res) {
+            // console.log('storeSocket1', res)
+            commit('privateChat', res)
+
+    },
+    // 更新 chatMessage 
+    updateChatMessage({commit}, data) {
+        commit('privateChat', data)
+    },
+
     // 更新 User
-    async updateUser({commit, state}) {
+    async updateUser({ commit, state }) {
         console.log('storeActionsUser')
-        const res =await Vue.prototype.$http.get(`/rest/users/detail/${state.user._id}`)
+        const res = await Vue.prototype.$http.get(`/rest/users/detail/${state.user._id}`)
         commit('updateUser', res.data)
     },
     // 断开 socket 连接
-    disconnectSocket({state}) {
+    disconnectSocket({ state }) {
         state.user = {}
         Vue.prototype.$socket.disconnect()
 

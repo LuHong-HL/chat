@@ -93,12 +93,21 @@ export default {
       // 2. 修改 AddFriendInformation 数据库 status字段 为 1
       // 3. 前端获取最新数据，渲染
 
+      // 添加好友管理
       const res =await this.$http.get(`/rest/users/${this.$store.state.user._id}`)
       let friends = res.data.friends
       friends.push(friend.fromId._id);
       await this.$http.put(`/rest/users/${this.$store.state.user._id}`, {
         friends: friends
       });
+      // 好友添加 friends 关联自己
+      const res2 = await this.$http.get(`/rest/users/${friend.fromId._id}`)
+      let friends2 = res2.data.friends
+      friends2.push(this.$store.state.user._id);
+      await this.$http.put(`/rest/users/${friend.fromId._id}`, {
+        friends: friends2
+      });
+
       await this.$http.put(
           `/rest/add_friend_Informations/${friend._id}`,
         { status: 1 }

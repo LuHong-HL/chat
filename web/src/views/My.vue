@@ -48,20 +48,11 @@
         </template>
       </van-cell>
     </van-cell-group>
-    <span>socket测试{{message}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  created() {
-    setTimeout(()=>{
-      this.$store.state.socket.on('addFriend', (res)=>{
-        this.message = res
-    })
-    }, 500)
-   
-  },
   data() {
     return {
       message: "",

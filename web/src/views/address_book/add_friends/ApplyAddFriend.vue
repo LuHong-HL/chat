@@ -23,9 +23,7 @@
 
 <script>
 export default {
-  created() {
-    
-  },
+
   data() {
     return {
       friend: this.$route.query, // 要添加朋友的信息
@@ -35,7 +33,6 @@ export default {
   methods: {
     //发送添加好友请求
     async addFriend() {
-      const socket = this.$store.state.socket;
       console.log("friend", this.friend);
       // 根据 userId 找出对应的 socketId
       const socketMap = await this.$http.post("/rest/sockets/conditions", {
@@ -43,7 +40,7 @@ export default {
       });
       console.log("socketMap", socketMap);
       const socketId = socketMap.data[0].socketId;
-      socket.emit("addFriend", socketId, { toId: this.friend._id, fromId:this.$store.state.user._id, checkMessage: this.checkMessage});
+      this.$socket.emit("addFriend", socketId, { toId: this.friend._id, fromId:this.$store.state.user._id, checkMessage: this.checkMessage});
     }
   }
 };

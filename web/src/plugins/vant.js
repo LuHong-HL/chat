@@ -19,7 +19,8 @@ import {
     Form,
     Divider,
     Uploader,
-    Search       
+    Search,
+    Notify        
 } from 'vant';
 
 Vue.use(Icon);
@@ -42,4 +43,6 @@ Vue.use(Form)
 Vue.use(Divider)
 Vue.use(Uploader)
 Vue.use(Search)
+Vue.use(Notify)
+
 

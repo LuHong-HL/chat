@@ -98,10 +98,6 @@ router.beforeEach((to, from, next) => {
     })
     return next({ path: '/login' })
   }else{
-    // 判断是否有 socket ，更新 store 中的 socket
-    if(!store.state.isConnectSocket && token){
-      store.dispatch('createSocket') 
-    }
     // 更新store 中的用户信息
     if((Object.keys(store.state.user).length === 0) && (Object.keys(user).length !== 0)){
       store.commit('updateUser', user)

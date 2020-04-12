@@ -24,6 +24,7 @@ module.exports = (server) => {
             // 2. 有数据的话，更新 AddFriendInformation 就可以了
             // 3. 无的话，还要更新 User 的 addFriendInformations
             const condition = await AddFriendInformation.findOneAndUpdate({toId: body.toId, fromId: body.fromId}, body, {upsert: true})
+            console.log('更改AddFriendInformation 数据库')
             if(condition === null){
                 // 查找 AddFriendInformation 数据
                 const addFriendInformation =await AddFriendInformation.findOne({toId: body.toId, fromId: body.fromId})
@@ -33,8 +34,11 @@ module.exports = (server) => {
                 // 更新 User addFriendInformations
                 await User.findOneAndUpdate({ _id: body.toId }, {addFriendInformations: addFriendInformations})
             }
+            // User 表找出 addFriendInformations 信息
+            const model = await User.findById(body.toId, {addFriendInformations:1}).populate({path: 'addFriendInformations',populate: { path: 'fromId' }})
+
             // 向对应 socketId 的用户广播信息
-            socket.broadcast.to(socketId).emit('addFriend', body)
+            socket.broadcast.to(socketId).emit('addFriend', model)
         })
        
 

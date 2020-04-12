@@ -16,7 +16,8 @@
           slot="icon"
           slot-scope="props"
           :class="props.active ? 'iconfont iconaddressbook_fill' : 'iconfont iconaddressbook'"
-        size="50px"></span>
+          size="50px"
+        ></span>
       </van-tabbar-item>
       <van-tabbar-item info="3" replace to="/main/find" name="/main/find">
         <span>发现</span>
@@ -34,26 +35,24 @@
           :class="props.active ? 'iconfont iconiconfontzhizuobiaozhun04' : 'iconfont iconiconfontzhizuobiaozhun08'"
         ></span>
       </van-tabbar-item>
-    
     </van-tabbar>
   </div>
 </template>
 
 <script>
 export default {
+  
   data() {
     return {
       active: this.$route.path
     };
   },
-  computed: {
-    
-  },
+  computed: {}
 };
 </script>
 
 <style scoped>
-.van-tabbar{
+.van-tabbar {
   background-color: #f7f7f7;
 }
 </style>

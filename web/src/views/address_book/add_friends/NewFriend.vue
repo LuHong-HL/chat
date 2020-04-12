@@ -12,7 +12,7 @@
     <!-- 搜索框 -->
     <van-search
       class="search"
-      v-model="model.phone"
+      v-model="phone"
       background="#ededed"
       placeholder="通信号/手机号"
       input-align="center"
@@ -22,7 +22,7 @@
     <div class="container">
       <van-cell
         class="cell-container d-flex ai-center fs-lg"
-        v-for="(item, index) in 15"
+        v-for="(item, index) in newFriends"
         :key="index"
         
       >
@@ -31,16 +31,16 @@
             width="1.1112rem"
             height="1.1112rem"
             radius=".133333rem"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="item.fromId.avatar"
           />
         </template>
         <template v-slot:title>
           <div class="d-flex">
-            <span class="cell-title pl-1 fs-lg text-dark flex-grow-1">我是小小明鸭</span>
+            <span class="cell-title pl-1 fs-lg text-dark flex-grow-1">{{item.fromId.username}}</span>
           </div>
         </template>
         <template v-slot:label>
-          <span class="cell-title fs-sm pl-1 text-dark-3">{{item}}有东西聊吗</span>
+          <span class="cell-title fs-sm pl-1 text-dark-3">{{item.checkMessage}}</span>
         </template>
         <template v-slot:default>
           <van-button type="primary" size="small">接受</van-button>
@@ -54,18 +54,34 @@
 
 <script>
 export default {
+  sockets: {
+    // 监听 addFriend 事件
+      addFriend(res) {
+          this.newFriends = res.addFriendInformations
+      }
+  },
+  created() {
+    this.getNewFriends()
+  },
   data() {
     return {
-      model:{
         phone:'', // 手机号
-      }
+        newFriends:[], //新朋友信息列表
+      
     };
   },
   methods: {
+    // 跳转到搜索页面
     toSearchPage() {
       this.$router.push({
         path:'/new_friends/search_friends'
       })
+    },
+    // 获取 新朋友列表
+    async getNewFriends() {
+      let res = await this.$http.get(`/rest/users/add_friend_informations/${this.$store.state.user._id}`)
+      this.newFriends = res.data.addFriendInformations
+
     }
   }
 };

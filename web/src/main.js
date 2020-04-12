@@ -16,6 +16,8 @@ import http from './plugins/http'
 // 导入 store 
 import store from './store/index'
 
+import VueSocketIO from 'vue-socket.io'
+
 // 在原型上挂载http 之后可以在任意组件中通过 this.$http 使用
 Vue.prototype.$http = http
 
@@ -28,16 +30,28 @@ import MyCell from './components/MyCell.vue'
 Vue.component('my-top-bar', MyTopBar)
 Vue.component('my-cell', MyCell)
 
-// socket.io-client 
-import io from 'socket.io-client'
-Vue.prototype.$io = io
-// const socket = io('http://localhost')
-// console.log('socket', socket)
 
 Vue.config.productionTip = false
+
+// 配置 socket.io
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'http://localhost:3000/chat',
+  vuex: {
+      store,
+      actionPrefix: 'SOCKET_',
+      mutationPrefix: 'SOCKET_'
+  },
+  // options: { path: "/chat/" } //Optional options
+}))
+ 
+
+
 
 new Vue({
   router,
   store, //使用 store
   render: h => h(App)
 }).$mount('#app')
+
+

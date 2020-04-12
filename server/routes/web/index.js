@@ -51,19 +51,20 @@ module.exports = app => {
         const model = await req.model.findById(req.params.id)
         res.send(model)
     })
-    //根据 条件获取对应模型的资源
-    // router.get('/conditions', async (req, res) => {
-    //     console.log(req.body)
-    //     // const model = await req.model.find(req.body)
-    //     res.send(req.body)
-    // })
+    //根据 userId 获取 addFriendInformations
+    router.get('/add_friend_informations/:id', async (req, res) => {
+        
+        // console.log('model', model)
+        const model = await req.model.findById(req.params.id, {addFriendInformations:1}).populate({path: 'addFriendInformations',populate: { path: 'fromId' }})
+        res.send(model)
+    })
 
 
     //根据用户提供的 userId 编辑对应模型资源 有则更新无则新建
     router.put('/', async (req, res) => {
         assert(req.body.userId, 400, '数据格式不正确')
         const model = await req.model.findOneAndUpdate({ userId: req.body.userId }, req.body, {upsert: true})
-        res.send(model)
+        res.send('OK')
     })
 
     //挂载子路由

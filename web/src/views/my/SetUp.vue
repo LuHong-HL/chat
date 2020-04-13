@@ -39,9 +39,9 @@
             <span class="cell-title fs-lg text-dark">退出登录</span>
           </div>
         </van-cell>
-        <van-cell class="cell-container fs-lg pt-1-5 pb-1-5">
+        <van-cell class="cell-container fs-lg pt-1-5 pb-1-5" @click="logout">
           <div class="text-center">
-            <span class="cell-title fs-lg text-dark">关闭微信</span>
+            <span class="cell-title fs-lg text-dark">关闭通信</span>
           </div>
         </van-cell>
       </van-cell-group>

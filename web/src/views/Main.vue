@@ -2,7 +2,7 @@
   <div>
     <router-view></router-view>
     <van-tabbar v-model="active" active-color="#08c161" inactive-color="#000">
-      <van-tabbar-item info="3" replace to="/main/home" name="/main/home">
+      <van-tabbar-item  replace to="/main/home" name="/main/home">
         <span>通信</span>
         <span
           slot="icon"
@@ -10,7 +10,7 @@
           :class="props.active ? 'iconfont iconchat' : 'iconfont iconchat_bubble'"
         ></span>
       </van-tabbar-item>
-      <van-tabbar-item info="3" replace to="/main/address_book" name="/main/address_book">
+      <van-tabbar-item  replace to="/main/address_book" name="/main/address_book">
         <span>通讯录</span>
         <span
           slot="icon"
@@ -19,7 +19,7 @@
           size="50px"
         ></span>
       </van-tabbar-item>
-      <van-tabbar-item info="3" replace to="/main/find" name="/main/find">
+      <van-tabbar-item  replace to="/main/find" name="/main/find">
         <span>发现</span>
         <span
           slot="icon"

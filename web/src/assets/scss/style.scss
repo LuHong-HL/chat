@@ -15,10 +15,12 @@ body {
 }
 
 // color  .text-green  .bg-green
-@each $colorKey, $color in $colors {
+@each $colorKey,
+$color in $colors {
     .text-#{$colorKey} {
         color: $color;
     }
+
     .bg-#{$colorKey} {
         background-color: $color;
     }
@@ -35,22 +37,31 @@ body {
 .d-flex {
     display: flex;
 }
+
 .flex-column {
     flex-direction: column;
 }
+
 .flex-1 {
     flex: 1;
 }
+
 .flex-grow-1 {
     flex-grow: 1;
 }
-@each $key, $value in $flex-jc {
+
+@each $key,
+$value in $flex-jc {
+
     // .jc-center
     .jc-#{$key} {
         justify-content: $value;
     }
 }
-@each $key, $value in $flex-ai {
+
+@each $key,
+$value in $flex-ai {
+
     // .ai-center
     .ai-#{$key} {
         align-items: $value;
@@ -59,7 +70,8 @@ body {
 
 //font size 
 // .fs-sm => 12px
-@each $sizeKey, $size in $font-sizes {
+@each $sizeKey,
+$size in $font-sizes {
     .fs-#{$sizeKey} {
         font-size: $size * $base-font-size;
     }
@@ -67,27 +79,37 @@ body {
 
 // flex
 // mt-0
-@each $typeKey, $type in $spacing-types {
+@each $typeKey,
+$type in $spacing-types {
+
     // .m-1
-    @each $sizeKey, $size in $spacing-sizes {
+    @each $sizeKey,
+    $size in $spacing-sizes {
         .#{$typeKey}-#{$sizeKey} {
             #{$type}: $size * $spacing-base-size;
         }
     }
+
     // .mx-1 .my-1
-    @each $sizeKey, $size in $spacing-sizes {
+    @each $sizeKey,
+    $size in $spacing-sizes {
         .#{$typeKey}x-#{$sizeKey} {
             #{$type}-left: $size * $spacing-base-size;
             #{$type}-right: $size * $spacing-base-size;
         }
+
         .#{$typeKey}y-#{$sizeKey} {
             #{$type}-top: $size * $spacing-base-size;
             #{$type}-bottom: $size * $spacing-base-size;
         }
     }
 
-    @each $directionKey, $direction in $spacing-directions {
-        @each $sizeKey, $size in $spacing-sizes {
+    @each $directionKey,
+    $direction in $spacing-directions {
+
+        @each $sizeKey,
+        $size in $spacing-sizes {
+
             // .mt-1 { margin-top: 0.25rem; }
             .#{$typeKey}#{$directionKey}-#{$sizeKey} {
                 #{$type}-#{$direction}: $size * $spacing-base-size;
@@ -113,11 +135,184 @@ body {
 .width-100 {
     width: 100%;
 }
+
 .height-100 {
     height: 100%;
 }
 
 //vertical-align: middle;
 .va-middle {
-    vertical-align:middle;
+    vertical-align: middle;
 }
+
+
+
+// 聊天框样式
+.left {
+    display: flex;
+    justify-self: start;
+    font-size: map-get($font-sizes, "lg") * $base-font-size;
+    margin-bottom: map-get($spacing-sizes, "1-5") * $spacing-base-size;
+  }
+  .left .image {
+    margin-left: map-get($spacing-sizes, "0-5") * $spacing-base-size;
+    margin-right: map-get($spacing-sizes, "1-5") * $spacing-base-size;
+  }
+  .left > div > p {
+    min-height: 1rem;
+    margin: 0;
+    margin-right: 1.546667rem;
+    background-color: map-get($colors, "white");
+    padding: map-get($spacing-sizes, "0-5") * $spacing-base-size;
+    line-height: 0.64rem;
+    position: relative;
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+    font-size: map-get($font-sizes, "lg") * $base-font-size;
+    margin-bottom: map-get($spacing-sizes, "1-5") * $spacing-base-size;
+  }
+  .right .image {
+    margin-left: map-get($spacing-sizes, "1-5") * $spacing-base-size;
+    margin-right: map-get($spacing-sizes, "0-5") * $spacing-base-size;
+  }
+  .right > div > p {
+    min-height: 1rem;
+    margin: 0;
+    margin-left: 1.546667rem;
+    background-color: map-get($colors, "green-1");
+    padding: map-get($spacing-sizes, "0-5") * $spacing-base-size;
+    line-height: 0.64rem;
+    position: relative;
+  }
+
+  .left > div > p:before,
+  .right > div > p:after {
+    /*用伪类写出小三角形*/
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: .266667rem solid transparent;
+    position: absolute;
+    top: .266667rem;
+  }
+  /*分别给左右两边的小三角形定位*/
+  .left > div > p:before {
+    border-right: .266667rem solid map-get($colors , 'white');
+    left: -0.45rem;
+  }
+  .right> div > p:after {
+    border-left: 10px solid map-get($colors , 'green-1');
+    right: -0.45rem;
+  }
+
+
+
+// .left,.right{
+//     min-height: 40px;
+//     position: relative;
+//     display: table;
+//     // text-align: center;
+//     border-radius: 5px;
+//     background-color: #9EEA6A;
+// }
+// .right{      /*使左右的对话框分开*/
+//     top: 20px;
+//     left: 5rem;
+// }
+// .left > p,.right > p{    /*使内容居中*/
+//     display: table-cell;
+//     vertical-align: middle;
+//     padding: 0 10px;
+// }
+// .left:before,.right:after{   /*用伪类写出小三角形*/
+//     content: '';
+//     display: block;
+//     width: 0;
+//     height: 0;
+//     border: 8px solid transparent;
+//     position: absolute;
+//     top: 11px;
+// }
+// /*分别给左右两边的小三角形定位*/
+// .left:before{    
+//     border-right: 8px solid #9EEA6A;
+//     left: -16px;
+// }
+// .right:after{    
+//     border-left: 8px solid #9EEA6A;
+//     right: -16px;
+// }
+
+
+
+// .left,.right{
+//     min-height: 60px;
+//     position: relative;
+//     left: 10px;
+//     display: table;
+//     text-align: center;
+//     border-radius: 7px;
+//     background-color:#9EEA6A;
+// }
+// .right{      /*使左右的对话框分开*/
+//     top: 20px;
+//     left: 150px;
+//     background-color: #FC3;
+// }
+// .left > p,.right > p{    /*使内容居中*/
+//     display: table-cell;
+//     vertical-align: middle;
+//     padding: 0 10px;
+// }
+// .left:before,.right:after{   /*用伪类写出小三角形*/
+//     content: '';
+//     display: block;
+//     width: 0;
+//     height: 0;
+//     border: 16px solid transparent;
+//     position: absolute;
+//     top: 11px;
+// }
+// /*分别给左右两边的小三角形定位*/
+// .left:before{    
+//     border-right: 16px solid #9EEA6A;
+//     left: -30px;
+// }
+// .right:after{    
+//     border-left: 16px solid #FC3;
+//     right: -30px;
+// }
+
+// .box2{  
+//     float:left;  
+//     position:relative;  
+//     width:200px;  
+//     height:100px;  
+//     border:1px solid #00f;  
+//     margin:50px;  
+//     box-sizing:border-box;  
+//     font-size:14px;  
+//     padding:10px;  
+//     box-shadow:0 0 2px rgba(0,0,0,.5)  
+// }  
+// .box2:before,
+// .box2:after{  
+//     position:absolute;  
+//     content:'';
+//     border:10px solid;
+// }  
+// .box2:before{  
+//     right: -20px;
+//     top:20px;
+//     border-color: transparent transparent transparent #00f;
+// }  
+// .box2:after{  
+//     border-color: transparent transparent transparent #fff;
+//     right: -18px;
+//     top: 20px;
+// } 
+

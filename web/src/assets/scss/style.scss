@@ -166,6 +166,7 @@ $type in $spacing-types {
     padding: map-get($spacing-sizes, "0-5") * $spacing-base-size;
     line-height: 0.64rem;
     position: relative;
+    border-radius: .1rem;
   }
 
   .right {
@@ -186,6 +187,7 @@ $type in $spacing-types {
     padding: map-get($spacing-sizes, "0-5") * $spacing-base-size;
     line-height: 0.64rem;
     position: relative;
+    border-radius: .1rem;
   }
 
   .left > div > p:before,

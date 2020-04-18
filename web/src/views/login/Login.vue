@@ -1,6 +1,9 @@
 <template>
   <div class="login-container d-flex jc-center ai-center">
     <div class="login-inner-container p-3">
+      <div class="login-image">
+        <!-- <h1>Chat</h1> -->
+      </div>
       <van-tabs v-model="model.active" :border="false">
         <van-tab title="登录">
           <van-form @submit="login">
@@ -65,7 +68,6 @@
 
 <script>
 export default {
-
   data() {
     return {
       model: {
@@ -87,14 +89,14 @@ export default {
     // 登录
     async login() {
       const res = await this.$http.post("/login", this.model.login);
-      console.log('user', res);
+      console.log("user", res);
       if (res.status === 200) {
         // sessionStorage.token = res.data.token;
         sessionStorage.setItem("token", res.data.token);
         // 保存用户基本信息到 store 中
-        sessionStorage.setItem("user", JSON.stringify(res.data.user))
+        sessionStorage.setItem("user", JSON.stringify(res.data.user));
         this.$store.commit("updateUser", res.data.user);
-        this.$socket.connect()
+        this.$socket.connect();
         this.$toast({
           type: "success",
           message: "登录成功"
@@ -164,6 +166,16 @@ export default {
     // width: 90%;
     background-color: #fff;
     border-radius: 0.25rem;
+    position: relative;
+
+     .login-image{
+       position: absolute;
+       top: -1.7rem;
+       left: 3rem;
+       z-index: 2;
+       color: #F596AA;
+     }
+
     .field {
       padding-bottom: map-get($spacing-sizes, "1") * $spacing-base-size;
     }

@@ -24,7 +24,7 @@ const schema = new mongoose.Schema({
     },
     friends: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }], //朋友
     addFriendInformations: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'AddFriendInformation' }], //加好友信息
-    socketId: { // 用户的 socketId 登录时才有，下线时为空
+    socketId: { // 用户的 socketId 登录时才有，下线时为空 没有使用这个属性，现在在用socket表的进行关联
         type: String,
         default: ''
     }

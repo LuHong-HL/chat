@@ -2,7 +2,7 @@
   <div>
     <el-container style="height: 100vh; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu  router unique-opened :default-active="$route.path">
+        <el-menu router unique-opened :default-active="$route.path">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-message"></i>用户
@@ -27,15 +27,15 @@
 
       <el-container>
         <el-header style="text-align: right; font-size: 12px">
-          <el-dropdown>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
+          <el-dropdown split-button @click="logout">
+            确认功能
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>查看</el-dropdown-item>
-              <el-dropdown-item>新增</el-dropdown-item>
-              <el-dropdown-item>删除</el-dropdown-item>
+              <el-dropdown-item>退出登录</el-dropdown-item>
+              <!-- <el-dropdown-item>新增</el-dropdown-item>
+              <el-dropdown-item>删除</el-dropdown-item> -->
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王小虎</span>
+          <span>Chat后台</span>
         </el-header>
         <el-main>
           <router-view></router-view>
@@ -50,12 +50,22 @@ export default {
   data() {
     const item = {
       date: "2016-05-02",
-      name: "王小虎",
+      name: "Chat后台",
       address: "上海市普陀区金沙江路 1518 弄"
     };
     return {
       tableData: Array(20).fill(item)
     };
+  },
+  methods: {
+    //注销登录
+    logout() {
+      // console.log("s");
+      sessionStorage.clear();
+      this.$router.push({
+        path:'/login'
+      })
+    }
   }
 };
 </script>

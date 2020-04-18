@@ -144,13 +144,16 @@ $type in $spacing-types {
 .va-middle {
     vertical-align: middle;
 }
-
+// vertical-align: text-top;
+.va-text-top {
+    vertical-align: text-top;
+}
 
 
 // 聊天框样式
 .left {
     display: flex;
-    justify-self: start;
+    justify-self: flex-start;
     font-size: map-get($font-sizes, "lg") * $base-font-size;
     margin-bottom: map-get($spacing-sizes, "1-5") * $spacing-base-size;
   }
@@ -189,7 +192,6 @@ $type in $spacing-types {
     position: relative;
     border-radius: .1rem;
   }
-
   .left > div > p:before,
   .right > div > p:after {
     /*用伪类写出小三角形*/
@@ -199,7 +201,7 @@ $type in $spacing-types {
     height: 0;
     border: .266667rem solid transparent;
     position: absolute;
-    top: .266667rem;
+    top: .1rem;
   }
   /*分别给左右两边的小三角形定位*/
   .left > div > p:before {

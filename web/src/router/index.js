@@ -26,6 +26,8 @@ import ApplyAddFriend from '../views/address_book/add_friends/ApplyAddFriend.vue
 import Friend from '../views/address_book/group_chat/Friend.vue'
 import Chat from '../views/address_book/group_chat/Chat.vue'
 
+import World from '../views/find/World.vue'
+
 
 Vue.use(VueRouter)
 
@@ -89,6 +91,10 @@ const routes = [
   {
     path: '/address_book/chat',
     component: Chat,
+  },
+  {
+    path: '/main/find/world',
+    component: World,
   },
 
 ]

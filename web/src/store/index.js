@@ -6,6 +6,7 @@ Vue.use(Vuex);
 const state = {
     user: {}, // 用户基本信息 {}
     chatMessage: {}, //聊天信息 {[{},{}],[]}
+    worldMessage:[], //世界聊天信息 [{}, {}]
 }
 // 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
 const mutations = {
@@ -51,6 +52,10 @@ const mutations = {
             Vue.prototype.$set(state.chatMessage, data.toId, [])
         }
         state.chatMessage[data.toId].push(data)
+    },
+    // 更新自己发送的 worldMessage
+    updateWorldMessageSendBySelf(state, data) {
+        state.worldMessage.push(data)
     }
 
 
@@ -86,6 +91,13 @@ const actions = {
             commit('privateChat', res)
 
     },
+    // socket 监听 world 事件
+    SOCKET_worldMessage({commit}, res){
+        //更新 worldMessage
+        console.log('res...', res)
+        commit('updateWorldMessageSendBySelf', res)
+    },
+
     // 更新 chatMessage 
     updateChatMessage({commit}, data) {
         commit('privateChat', data)
@@ -103,6 +115,7 @@ const actions = {
         Vue.prototype.$socket.disconnect()
 
     }
+
 }
 
 // 创建一个 store

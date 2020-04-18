@@ -117,6 +117,7 @@ export default {
   },
   computed: {
     privateMessage() {
+      this.scrollToBottom()
       //聊天信息 []
       return this.$store.state.chatMessage[this.friend._id];
     }

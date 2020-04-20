@@ -97,6 +97,11 @@ const actions = {
         console.log('res...', res)
         commit('updateWorldMessageSendBySelf', res)
     },
+    SOCKET_updateFriends({dispatch}){
+        // 更新好友列表，提示好友添加成功
+        Vue.prototype.$notify({ type: 'success', message: '有新朋友添加成功' });
+        dispatch('updateUser')
+    },
 
     // 更新 chatMessage 
     updateChatMessage({commit}, data) {

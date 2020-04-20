@@ -42,6 +42,12 @@ module.exports = (server) => {
                 // 向对应 socketId 的用户广播信息
                 socket.broadcast.to(socketId).emit('addFriend', model)
             })
+            // 通知好友更新好友列表
+            socket.on('updateFriends', (socketId, body) => {
+                // 向对应 socketId 的用户广播信息
+                // console.log('updateFriends', body)
+                socket.broadcast.to(socketId).emit('updateFriends', body)
+            })
 
             // 发送私聊
             socket.on('privateChat', (socketId, body) => {

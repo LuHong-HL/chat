@@ -100,6 +100,7 @@ export default {
       await this.$http.put(`/rest/users/${this.$store.state.user._id}`, {
         friends: friends
       });
+
       // 好友添加 friends 关联自己
       const res2 = await this.$http.get(`/rest/users/${friend.fromId._id}`)
       let friends2 = res2.data.friends
@@ -107,14 +108,22 @@ export default {
       await this.$http.put(`/rest/users/${friend.fromId._id}`, {
         friends: friends2
       });
-
       await this.$http.put(
           `/rest/add_friend_Informations/${friend._id}`,
         { status: 1 }
       );
       this.getNewFriends();
+
       // 更新 sessionStorage 及 store 中的 user 
       this.$store.dispatch('updateUser')
+      
+      //假设好友在线，则通过socket通知好友更新好友列表，不在线就不更新，好友登录自动更新
+       // 根据 userId 找出对应的 socketId
+      const socketMap = await this.$http.post("/rest/sockets/conditions", {
+        userId: friend.fromId._id
+      });
+      const socketId = socketMap.data[0].socketId;
+      this.$socket.emit("updateFriends", socketId, { toId: friend.fromId._id, fromId:this.$store.state.user._id, checkMessage: '我们现在是朋友了', username: this.$store.state.user.username});
     }
   }
 };

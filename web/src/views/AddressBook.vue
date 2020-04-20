@@ -79,11 +79,11 @@
 <script>
 export default {
   created() {
-    this.getFriendsList()
+    // this.getFriendsList()
   },
   data() {
     return {
-      friendsList: [], //好友列表
+      // friendsList: [], //好友列表
       indexList: [
         "A",
         "B",
@@ -116,10 +116,10 @@ export default {
   },
   methods: {
     //获取好友列表
-    getFriendsList() {
-      this.friendsList = this.$store.state.user.friends
+    // getFriendsList() {
+    //   this.friendsList = this.$store.state.user.friends
          
-    },
+    // },
     // 跳转到朋友页面
     goToFriendPage(item) {
         this.$router.push({
@@ -128,6 +128,12 @@ export default {
         })
     }
   },
+  computed: {
+    // 好友列表
+    friendsList() {
+      return this.$store.state.user.friends
+    }
+  }
 };
 </script>
 

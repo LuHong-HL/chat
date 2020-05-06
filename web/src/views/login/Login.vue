@@ -96,7 +96,9 @@ export default {
         // 保存用户基本信息到 store 中
         sessionStorage.setItem("user", JSON.stringify(res.data.user));
         this.$store.commit("updateUser", res.data.user);
-        this.$socket.connect();
+        //重新建立socket连接,重而触发store中的SOCKET_connect事件，然后更新socket.id与userId的映射
+        this.$socket.disconnect()
+        this.$socket.connect()
         this.$toast({
           type: "success",
           message: "登录成功"

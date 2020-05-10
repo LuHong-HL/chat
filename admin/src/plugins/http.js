@@ -3,7 +3,8 @@ import Vue from 'vue'
 import router from '../router/index'
 // 自定义配置创建 axios 实例
 const http = axios.create({
-    baseURL: 'http://localhost:3000/admin/api'
+    baseURL:process.env.VUE_APP_API_URL || '/admin/api'
+    // baseURL: 'http://localhost:3000/admin/api'
 })
 
 // 添加请求拦截器 

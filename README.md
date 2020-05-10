@@ -1387,3 +1387,56 @@ const routes = [
 
 + 防止初始的时候数据库的文件引用出错，例如 A 引用 B 二 B 没有被初始化过，出现错误，所以使用到 **require-all**  插件，防止这种情况出现
 
+## 线上部署
+
++ 生成环境的编译
+
+  - 在项目中的文件下，运行npm run build打包编译项目，会自动生成一个dist的文件存放编译的静态文件，这文件可以通过全局安装的serve进行启动查看效果。（安装命令：`npm i -g serve` ,启动dist项目 `serve dist`）
+
+  - 修改baseURL为动态的，生成环境和开发环境不一样的URL，修改配置如下：然后在src同级中再定义一个`.env.development` 开发环境变量文件夹，存放开发环境baseURL，生成环境是绝对地址。之后再打包编译就不是localhost的固定地址了。
+
+    ```js
+    // 自定义配置创建 axios 实例，一定要这样写process.env.VUE_APP 后面再接名字例如_API_URL
+    const http = axios.create({
+        baseURL:process.env.VUE_APP_API_URL || '/admin/api'
+        // baseURL: 'http://localhost:3000/web/api'
+    })
+    ```
+
+    ```js
+    //.env.development 文件夹
+    VUE_APP_API_URL=http://localhost:3000/web/api
+    ```
+
+  - 在src同级中建立一个vue.config.js文件，进行相关文件的配置。打包编译文件输出路劲，生成文件静态路劲的配置。可参考Vue官网中的vue cli的部署部分。[部署连接](https://cli.vuejs.org/zh/guide/deployment.html)
+
+    ```js
+    module.exports = {
+        //打包编译的时候输出的文件夹
+        outputDir: __dirname + '/../server/public/web',
+        // 生成的静态文件路径
+        publicPath: process.env.NODE_ENV === 'production'
+          ? '/'
+          : '/'
+      }
+    ```
+
+    
+
++ 购买域名和服务器
+
++ 域名解析
+
++ Nginx安装和配置
+
++ MongoDB数据库的安装和配置
+
++ GIt安装、配置ssh-key
+
++ Node.js安装、配置淘宝镜像
+
++ 拉取代码、安装pm2并启动项目
+
++ 配置Nginx的反向代理
+
++ 迁移本地数据到服务器

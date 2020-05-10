@@ -16,6 +16,9 @@ app.use(require('cors')())
 app.use(express.json())
 //开放uploads文件中的静态资源
 app.use('/uploads', express.static(__dirname + '/./uploads'))
+//开放web admin的静态文件
+app.use('/', express.static(__dirname + '/./public/web'))
+app.use('/admin', express.static(__dirname + '/public/admin'))
 
 //链接数据库
 require('./plugins/db')(app)

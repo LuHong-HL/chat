@@ -36,7 +36,8 @@ Vue.config.productionTip = false
 // 配置 socket.io
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://localhost:3000/chat',
+  // connection: 'http://localhost:3000/chat',
+  connection: 'http://chat.jishitongxin.top/chat',
   vuex: {
       store,
       actionPrefix: 'SOCKET_',

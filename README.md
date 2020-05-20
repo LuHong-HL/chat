@@ -1522,4 +1522,6 @@ const routes = [
   - 打开文件夹，进入**/root/** 个人文件夹中，复制导出的数据库文件dump到此处。然后打开终端，输入`mongorestore`恢复数据。如果服务关闭了，就要重启一下服务。去到程序的相应路径，例如：**/var/www/html/data/chat** 下，启动server。命令`pm2 server/index.js`
   - 修改之前图片上传的本地地址，改成线上地址例如：把`localhost:3000` 改成`chat.jishitongxin.top`  之后上传的图片就会上传到服务器。
   - 把新的版本推到git 远程仓库。然后到服务器拉取git仓库的最新代码。在项目文件中，通过`git pull` 命令拉取最新代码。然后通过 `pm2 reload index` 重启服务器。它不会自动重启。
+  - 通过**Robo 3T** 连接线上MongoDB数据库。起名字，然后通过SSH连接。
+  - 然后就可以直接修改远程数据库的数据了。数据量少可以手动修改，数据量大可以通过命令来修改。
 

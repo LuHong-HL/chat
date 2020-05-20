@@ -1425,18 +1425,101 @@ const routes = [
 
 + 购买域名和服务器
 
+  - 可以购买，按流量算的云服务器ECS，和相应的域名。
+
+  - 购买完成之后进入服务器，登录远程连接管理，远程连接密码只出现一次注意。之后可以在其他地方远程连接了: 命令`$ ssh root@39.96.69.128`，然后输入服务器密码即可。
+
+  - Linux操作
+
+    ```shell
+    // 查看当前目录
+    pwd
+    // 返回根路径
+    cd ~
+    // 查看当前文件目录
+    ls -all 或者 ll
+    ```
+
 + 域名解析
+
+  - 复制公网IP地址到域名中进行解析，然后再在相应域名下配置相应的配置
 
 + Nginx安装和配置
 
+  - 通过 `apt` 命令查看 `spt` 下能执行的命令
+  - `apt show nginx `  查看是否有对应的包
+  - `apt update` 更新列表中的包
+  - `apt install nginx -y`  安装nginx包，-y是默认安装，选项，如果没有要收到选配置
+  - 配置完这些一般可以通过，域名地址访问相应的网站了，但默认访问的80端口，如果访问不了，要去服务器的安全组中配置80端口，之后就可以运行了。
+
 + MongoDB数据库的安装和配置
+
+  - 通过`apt show mongodb` 查看是否有MongoDB这个包
+  - 通过 `apt install mongodb-server -y` 安装，因为是服务器，所以要安装**mongodb-server**版
+  - 通过`mongo` 启动MongoDB数据库的客户端，和我们平时在本地启动一样，然后可以通过命令行操作数据库，例如：`show dbs`，退出 MongoDB命令`exit` 
 
 + GIt安装、配置ssh-key
 
+  - 原因：为了同步代码比较方便，如果不是用git的话，我们写完代码之后，可以在本地，通过类似ftp,ssh这种方式，把这个代码复制到线服务器上去，这样服务器才能得到最新的代码。如果使用git，在服务器安装git，在本地把代码提交到git仓库中，在服务器用git拉取一下代码，就可以拿到最新的代码了，而且后续的话可以配置各种的自动化的流程，比如：在本地提交代码之后，服务器自动拉取最新代码。所以说git是比较重要的。
+  - 安装git命令`apt install git -y`，之后输入 `git ` 如果有提示则说明安装git成功。
+  - 服务器中生成**ssh-key** 通过 `ssh-keygen`，后面一路回车就好了，它会在**/root/.ssh/id_rsa.pub**文件夹中自动生成**ssh-key**
+  - 通过`cat /root/.ssh/id_rsa.pub`查看对应的公钥**ssh-key**，然后把它复制下来，之后复制到git仓库部署的公钥的地方上面去就可以了，这个公钥权限挺大的，防止别人乱拉代码，不要随意泄露。
+
 + Node.js安装、配置淘宝镜像
+
+  - 通过`apt install nodejs -y`安装node.js ,安装成功之后可以通过`node -v`查看相应版本号
+  - 通过`apt install npm -y` 安装 **npm** ，安装成功之后可以通过`npm -v`查看版本
+  - 配置淘宝镜像 `npm config set registry https://registry.npm.taobao.org`
+  - 通过npm去安装**nrm**命令为`npm i -g nrm`，可以快速切换镜像的管理工具，使用方法，例：切换镜像`nrm use taobao`，查看当前使用的镜像`nrm current`
+  - 升级npm，命令行`npm install -g npm` ,如果查看版本号，发现没有改变，可以退出一下远程，再次进入查看。
+  - 安装可以升级node本身的包，命令行`npm i -g n` ，通过命令`n stable`升级为稳定版
 
 + 拉取代码、安装pm2并启动项目
 
+  - 提前准备一个git 仓库，可以是国外的github或者国内的码云，其他的也行。
+  - git仓库中配置部署密钥：在项目中的Settings可以找到部署密钥的功能，注意不要把密钥放在个人设置中，可以通过服务器就就可以拉取，修改个人中的所有仓库的代码了，很危险。在服务器上可以通过`cat /root/.ssh/id_rsa.pub` 找到对应的密钥，然后再进行配置。
+  - 在服务器中的根目录的 /var/www/html下创建一个data文件夹，命令`mkdir data`，进入data文件，命令`cd data`，在git在clone下复制ssh的地址，在服务器的data文件中使用`git clone <仓库中复制的ssh地址>`进行克隆代码
+  - 进入项目的服务器模块的文件夹，例如：`cd chat/server`  进入到**server** 然后进行 modules的安装，安装命令`npm install`
+  - 可以用`node index.js` 的命令启动一下node项目，index.js是入口文件，也可以是其他的命名。虽然这样可以启动项目，但是这样会占用终端，而且`Ctrl + C`就会结束。所以选择**pm2** 安装命令`npm i g pm2`，就可以在服务器后台运行项目了，开发时用的是**nodemon**这是一个热更新。
+  - 通过**pm2**启动项目，启动项目命令`pm2 start index.js`，查看这在运行的程序`pm2 list`，具体操作用法可以看**pm2**文档。[pm2地址](https://www.npmjs.com/package/pm2)
+  - 如果想测试一下的话，可以用`curl`命令请求一个地址，这是很多linux系统自带的命令，例：`curl http://localhost:3000`
+
 + 配置Nginx的反向代理
 
+  - 因为需要操作的文档比较多，对linux命令行操作的要求比较高，所以推荐使用VSCode的**Remote - SSH**插件操作，安装好之后，进行相应的Host，HostName,User的设计
+
+    ```
+    //在本地的 C:>Users>xiaoyao>.ssh>config 文件中
+    # Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+    Host chat
+        HostName chat.jishitongxin.top
+        User root
+    ```
+
+  - 然后点击Connect to Host in New Window，进行连接，一般要输入服务器的密码进行验证。验证成功之后，点击VSCode左上角的文件夹，然后点击Open Folder，就会显示服务器的文件夹。回到跟路径，选择**/etc/nginx**文件，回车确定之后，再次输入服务器密码进行验证，就进入了，nginx配置文件的地方。
+
+  - 然后在这个位置上添加，自己网站的配置，如果要自己写的话，会比较麻烦，所以借用到了**nginxconfig.io**网站，在线生成**nginx**配置文件。具体生成步骤：
+
+    1、选择预设Presets，例如：Node.js
+
+    2、填写域名Domain，例如：chat.jishitongxin.top
+
+    3、子域名不用可以先选择关闭
+
+    4、Https暂时没有可以先不启用
+
+    5、反向代理设计，填写根据后端的本地地址，填写proxy_pass ，例如：http://127.0.0.1:3000
+
+    6、Tools中的模块化结构Modularized structure，然后下载自动生成的文件。
+
+    7、下载文件解压后，里面的**nginx.conf**是网站的默认配置文件，不用复制到自己的网站配置上去。其他的都复制上去。sites-enabled 中的conf文件可以不能通过导入的方式，使用sites-available中的conf文件，可以手动复制过去，然后使用。
+
+    8、复制完成之后，就可以重启nginx了。重启命令行：`service nginx reload`，可以尝试手动重启nginx 	`sudo service nginx start`，或者查看哪里出错 `sudo nginx -t`
+
 + 迁移本地数据到服务器
+
+  - 导出本地数据库，在项目文件夹中，通过`mongodump -d chat`的命令，进行本地数据库的导出，chat的数据库的名字，注意确保本地数据库在启动状态。
+  - 打开文件夹，进入**/root/** 个人文件夹中，复制导出的数据库文件dump到此处。然后打开终端，输入`mongorestore`恢复数据。如果服务关闭了，就要重启一下服务。去到程序的相应路径，例如：**/var/www/html/data/chat** 下，启动server。命令`pm2 server/index.js`
+  - 修改之前图片上传的本地地址，改成线上地址例如：把`localhost:3000` 改成`chat.jishitongxin.top`  之后上传的图片就会上传到服务器。
+  - 把新的版本推到git 远程仓库。然后到服务器拉取git仓库的最新代码。在项目文件中，通过`git pull` 命令拉取最新代码。然后通过 `pm2 reload index` 重启服务器。它不会自动重启。
+
